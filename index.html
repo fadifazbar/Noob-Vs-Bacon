@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Noobs vs Bacons Website</title>
+    <link rel="icon" href="https://media.discordapp.net/attachments/1362162058509947093/1371243464062402640/New_Logo.png?ex=68226d7e&is=68211bfe&hm=aa17d9478f5042c8bc33e484d61f5e1c55252a0ebd481e8d931b2661e98ae97d&=&width=487&height=487" type="image/png">
+    
+        <!-- Embed metadata for Discord, Twitter, and other platforms -->
+    <meta property="og:title" content="Noobs vs Bacons Website" />
+    <meta property="og:description" content="A combat team-based Roblox game where Noobs and Bacons fight for supremacy!" />
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1362162058509947093/1371243464062402640/New_Logo.png" />
+    <meta property="og:url" content="https://fadifazbar.github.io/Noob-Vs-Bacon/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #121212; /* Dark background */
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styling */
+        header {
+            padding: 30px;
+            background-color: transparent; /* Transparent background */
+            width: 100%;
+            z-index: 10;
+            position: relative; /* Stay at the top */
+        }
+
+        .logo-header {
+            text-align: center;
+            margin: 0;
+        }
+
+        .title {
+            font-size: 5em; /* Bigger title */
+            color: #f79c6a;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .noobs, .vs, .bacons {
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+            margin-top: 20px; /* Space for the title */
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #f3e8e0; /* New color for links */
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00; /* Hover color */
+            text-decoration: underline;
+        }
+
+        /* Style for the About Us Section */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            margin-top: 180px; /* Space after header */
+            margin-bottom: 80px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+            border-radius: 30px;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 60px; /* Increased space between sections */
+        }
+
+        .about-image {
+            max-width: 45%; /* Bigger image */
+            margin-right: 20px;
+        }
+
+        .rotated-image {
+            transform: rotate(-10deg);
+        }
+
+        .rotated-image-2 {
+            transform: rotate(10deg); /* Rotate the second image to the other side */
+        }
+
+        .about-text {
+            font-size: 1.4em;
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Darker text stroke */
+            font-weight: bold;
+            margin-top: 10px;
+            max-width: 50%;
+        }
+
+        .about-heading {
+            font-size: 2em; /* Bigger "About Us" title */
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Stroke effect */
+            margin-bottom: 20px;
+        }
+
+        /* Media query for smaller screen devices */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .about-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+                max-width: 80%; /* Larger images on mobile */
+            }
+
+            .about-text {
+                max-width: 100%;
+            }
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            color: #f79c6a;
+        }
+
+        a {
+            color: #f3e8e0; /* Link color for all links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ffcc00; /* Hover color */
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-header">
+            <h1 class="title">
+                <span class="noobs">Noobs</span> 
+                <span class="vs">Vs</span> 
+                <span class="bacons">Bacons</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="openSection('about')">About Us</a></li>
+                <li><a href="#" onclick="openSection('community')">Community</a></li>
+                <li><a href="#" onclick="openSection('game')">Game</a></li>
+                <li><a href="#" onclick="openSection('leaderboards')">Leaderboards</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="section-content">
+        <h2 class="about-heading">About Us</h2> <!-- Centered "About Us" title with stroke effect -->
+        <div class="about-section">
+            <div class="about-container">
+                <img src="https://media.discordapp.net/attachments/1365721620236337222/1371237230550712420/rex.png?ex=68231070&is=6821bef0&hm=eef55f2dbc32201eb039dbc419a24032d4d80299943951b3ee3e9bc6220526c3&=&width=1182&height=665" alt="Game Image" class="about-image rotated-image">
+                <p class="about-text">Noobs And Bacons is a roblox team based fighting game taking the classic theme of roblox, In here players choose sides between Noobs and Bacons, battling for supremacy. Created by <a href="https://www.roblox.com/users/1663515500/profile" target="_blank">@fadi_fazbar</a> and <a href="https://www.roblox.com/users/2627552760/profile" target="_blank">@iwantlightfruitplz</a>, the game combines strategic combat with dynamic gameplay, encouraging teamwork and rivalry between the factions.</p>
+            </div>
+            <div class="about-container">
+                <img src="https://media.discordapp.net/attachments/1365721620236337222/1371463548705964042/image.png?ex=68233a76&is=6821e8f6&hm=200ac5aab62f78951130d7f9bff75a9621f594f5516455f33701c812f92b9c60&=&width=1065&height=729" alt="Game Image" class="about-image rotated-image-2">
+                <p class="about-text">The game was created in 12/18/2024 and has since grown and made a small community of players who embrace the chaotic battle between the two iconic groups. Join the fight, choose your side, and prove your loyalty!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="section-content">
+        <h2>Community</h2>
+        <p>Community info goes here.</p>
+    </section>
+
+    <!-- Game Section -->
+    <section id="game" class="section-content">
+        <h2>Game</h2>
+        <p>Details about the game go here.</p>
+    </section>
+
+    <!-- Leaderboards Section -->
+    <section id="leaderboards" class="section-content">
+        <h2>Leaderboards</h2>
+        <p>Leaderboards go here.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Noobs vs Bacons. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.style.display = 'none');
+
+            // Show the clicked section
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+
+        // Default to "About Us" being visible when the page loads
+        window.onload = () => {
+            openSection('about');
+        };
+    </script>
+</body>
+</html>
