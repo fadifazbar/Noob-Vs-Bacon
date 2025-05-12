@@ -198,31 +198,46 @@
         <p>Community info goes here.</p>
     </section>
 
-<!-- Game Section with Log inside the Dark Box -->
+<!-- Game Section -->
 <section id="game" class="section-content" style="text-align: center;">
     <h2 style="font-size: 3em; font-family: 'Rubik', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Game</h2>
     <div class="game-buttons" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
-        <button onclick="showContent('updates')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Updates</button>
-        <button onclick="showContent('credits')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Credits</button>
-        <button onclick="showContent('features')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">In Game Features</button>
+        <button onclick="showContent('updates')" class="nav-button">Updates</button>
+        <button onclick="showContent('credits')" class="nav-button">Credits</button>
+        <button onclick="showContent('features')" class="nav-button">In Game Features</button>
     </div>
-
-    <!-- Log section integrated into the dark box -->
-    <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 60%; text-align: center;">
-        <p id="log-content" style="font-size: 1.2em; color: white;">Stay updated with the latest changes in Noobs vs Bacons!</p>
+    <div id="game-content" style="background-color: #333; padding: 20px; border-radius: 10px; margin-top: 10px;">
+        <p>Stay updated with the latest changes in Noobs vs Bacons! Check out the newest features and improvements here.</p>
     </div>
 </section>
+
+<!-- Updates Section -->
+<div id="updates" style="display: none; margin-top: 20px; display: flex; justify-content: space-around;">
+    <div style="flex: 1; padding: 10px;">
+        <h3 style="text-align: center; font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Updates</h3>
+        <div id="update-buttons" style="display: flex; flex-direction: column; gap: 10px;">
+            <button class="update-button" onclick="showUpdate(5)">Update 5</button>
+            <button class="update-button" onclick="showUpdate(4)">Update 4</button>
+            <button class="update-button" onclick="showUpdate(3)">Update 3</button>
+            <button class="update-button" onclick="showUpdate(2)">Update 2</button>
+            <button class="update-button" onclick="showUpdate(1)">Update 1</button>
+        </div>
+    </div>
+    <div id="update-content" style="flex: 2; padding: 20px; background-color: #222; border-radius: 10px; max-height: 400px; overflow-y: auto;">
+        <p>Select an update to view details.</p>
+    </div>
+</div>
 
 <script>
     function showContent(type) {
         const contentMap = {
-            'updates': 'Latest updates and changes in Noobs vs Bacons!',
+            'updates': 'Stay updated with the latest changes in Noobs vs Bacons!',
             'credits': 'Developed by @fadi_fazbar and @iwantlightfruitplz. Special thanks to the Noobs vs Bacons community!',
-            'features': 'Explore the team-based combat system and the rivalry between Noobs and Bacons!'
+            'features': 'Explore the unique gameplay mechanics, including the team-based combat system and evolving battles between Noobs and Bacons.'
         };
-        const contentDiv = document.getElementById('log-content');
-        contentDiv.innerHTML = contentMap[type];
-    };
+        const contentDiv = document.getElementById('game-content');
+        contentDiv.innerHTML = `<p>${contentMap[type]}</p>`;
+
         // Display updates section when clicking on Updates
         const updatesDiv = document.getElementById('updates');
         updatesDiv.style.display = (type === 'updates') ? 'flex' : 'none';
