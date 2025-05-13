@@ -39,3 +39,16 @@ window.addEventListener('popstate', function() {
         changeSection(hash);
     }
 });
+
+function showContent(section) {
+    // Hide all sections
+    const sections = ['game-content', 'credits-content', 'features-content'];
+    sections.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.style.display = 'none';
+    });
+
+    // Show the selected section
+    const selected = document.getElementById(section + '-content');
+    if (selected) selected.style.display = 'block';
+}
