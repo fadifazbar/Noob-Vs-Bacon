@@ -198,7 +198,7 @@
         <p>Community info goes here.</p>
     </section>
 
-<!-- Game Section with Log inside the Dark Box -->
+<!-- Game Section with Styled Buttons -->
 <section id="game" class="section-content" style="text-align: center;">
     <h2 style="font-size: 3em; font-family: 'Rubik', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Game</h2>
     <div class="game-buttons" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
@@ -208,45 +208,90 @@
     </div>
 
     <!-- Log section inside the dark box -->
-    <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 60%; text-align: center;">
-        <div id="game-content" style="display: none;">
-            <p id="log-content" style="font-size: 1.2em; color: white;">Stay updated with the latest changes in Noobs vs Bacons!</p>
+    <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; display: flex; justify-content: center;">
+        <div id="game-content" style="display: none; width: 100%; text-align: left;">
+            <!-- Updates Layout -->
+            <div style="display: flex; gap: 20px;">
+                <!-- Update Buttons -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                    <button onclick="displayUpdate(5)" class="update-btn">Update 5</button>
+                    <button onclick="displayUpdate(4)" class="update-btn">Update 4</button>
+                    <button onclick="displayUpdate(3)" class="update-btn">Update 3</button>
+                    <button onclick="displayUpdate(2)" class="update-btn">Update 2</button>
+                    <button onclick="displayUpdate(1)" class="update-btn">Update 1</button>
+                </div>
+
+                <!-- Update Content -->
+                <div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px;">
+                    <h3>Select an update to view details</h3>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <script>
     function showContent(type) {
-        const contentMap = {
-            'updates': `
-                <h3 style="font-size: 1.8em; color: white; margin-bottom: 10px;">Updates</h3>
-                <div style="text-align: left; margin-top: 10px;">
-                    <h4 style="font-size: 1.2em; color: lightgray;">Date: 4/26/2025</h4>
-                    <p>- Update 8: New features and improvements.</p>
-                    <h4 style="font-size: 1.2em; color: lightgray;">Date: 4/10/2025</h4>
-                    <p>- Update 7: Gameplay balancing.</p>
-                    <h4 style="font-size: 1.2em; color: lightgray;">Date: 4/1/2025</h4>
-                    <p>- Update 6: Bug fixes and optimizations.</p>
-                    <h4 style="font-size: 1.2em; color: lightgray;">Date: 3/16/2025</h4>
-                    <p>- Update 5: Major content update.</p>
-                    <h4 style="font-size: 1.2em; color: lightgray;">Date: 3/1/2025</h4>
-                    <p>- Update 4: More game modes.</p>
-                </div>
-            `,
-            'credits': `
-                <h3 style="font-size: 1.8em; color: white;">Credits</h3>
-                <p>Developed by @fadi_fazbar and @iwantlightfruitplz. Special thanks to the Noobs vs Bacons community!</p>
-            `,
-            'features': `
-                <h3 style="font-size: 1.8em; color: white;">In Game Features</h3>
-                <p>Explore the unique gameplay mechanics, including the team-based combat system and evolving battles between Noobs and Bacons.</p>
-            `
+        const gameContent = document.getElementById('game-content');
+        gameContent.style.display = (type === 'updates') ? 'block' : 'none';
+    }
+
+    function displayUpdate(number) {
+        const updateMap = {
+            5: {
+                date: "Date: 3/16/2025",
+                text: "Major content update. New game modes, balance changes, and bug fixes."
+            },
+            4: {
+                date: "Date: 3/1/2025",
+                text: "Added more game modes, improved UI, and fixed several performance issues."
+            },
+            3: {
+                date: "Date: 2/27/2025",
+                text: "Quality of life improvements and additional gameplay features."
+            },
+            2: {
+                date: "Date: 2/24/2025",
+                text: "Minor bug fixes and general improvements to the combat system."
+            },
+            1: {
+                date: "Date: 2/15/2025",
+                text: "Initial release with core gameplay features and basic combat mechanics."
+            }
         };
-        const contentDiv = document.getElementById('game-content');
-        contentDiv.style.display = 'block'; // Show the log box content
-        contentDiv.innerHTML = contentMap[type];
+
+        const contentDiv = document.getElementById('update-content');
+        const selectedUpdate = updateMap[number];
+        contentDiv.innerHTML = `
+            <h3 style="font-size: 1.8em;">${selectedUpdate.date}</h3>
+            <p style="font-size: 1.2em;">${selectedUpdate.text}</p>
+        `;
     }
 </script>
+
+<style>
+    .update-btn {
+        font-size: 1.2em;
+        background-color: #555;
+        color: white;
+        padding: 8px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        margin: 2px 0;
+        font-family: 'Rubik', sans-serif;
+        font-weight: bold;
+    }
+
+    .update-btn:hover {
+        background-color: #777;
+    }
+
+    .update-btn:active {
+        background-color: #999;
+    }
+</style>
 
     
 
