@@ -221,78 +221,109 @@
                     <button onclick="displayUpdate(1)" class="update-btn">Update 1</button>
                 </div>
 
-                <!-- Update Content -->
-                <div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px;">
-                    <h3>Select an update to view details</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+              <!-- Update Content -->
+<div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px;">
+    <h3>Select an update to view details</h3>
+</div>
 
 <script>
-    function showContent(type) {
-        const gameContent = document.getElementById('game-content');
-        gameContent.style.display = (type === 'updates') ? 'block' : 'none';
-    }
-
     function displayUpdate(number) {
         const updateMap = {
             5: {
                 date: "Date: 3/16/2025",
-                text: "Major content update. New game modes, balance changes, and bug fixes."
+                texts: [
+                    "Major content update.",
+                    "New game modes added.",
+                    "Balance changes implemented.",
+                    "Fixed bugs affecting performance.",
+                    "Improved enemy AI.",
+                    "Added new character skins.",
+                    "Optimized loading times.",
+                    "Enhanced graphics quality.",
+                    "New event added: Battle of Legends.",
+                    "Fixed leaderboard issues.",
+                    "Adjusted difficulty scaling.",
+                    "New community challenges.",
+                    "Bug fix: Infinite health glitch.",
+                    "UI improvements for mobile.",
+                    "Performance boost on low-end devices.",
+                    "Fixed crash on map loading.",
+                    "Updated sound effects."
+                ]
             },
             4: {
                 date: "Date: 3/1/2025",
-                text: "Added more game modes, improved UI, and fixed several performance issues."
+                texts: [
+                    "Added more game modes.",
+                    "Improved UI for better experience.",
+                    "Fixed lag in multiplayer sessions.",
+                    "Added new achievements.",
+                    "Balanced weapon damage.",
+                    "Fixed collision issues.",
+                    "Enhanced enemy spawn rates.",
+                    "Reduced server latency.",
+                    "New map: Dark Fortress.",
+                    "Updated character animations.",
+                    "Fixed hitbox problems.",
+                    "Improved NPC pathfinding.",
+                    "Bug fix: Disappearing items.",
+                    "New player customization options.",
+                    "Minor graphical updates."
+                ]
             },
             3: {
                 date: "Date: 2/27/2025",
-                text: "Quality of life improvements and additional gameplay features."
+                texts: [
+                    "Improved game performance.",
+                    "Fixed visual glitches.",
+                    "Enhanced gamepad support.",
+                    "New quests added.",
+                    "Balanced XP rates.",
+                    "Improved matchmaking system.",
+                    "Updated shop items.",
+                    "New leaderboard features.",
+                    "Fixed text alignment issues.",
+                    "General UI improvements."
+                ]
             },
             2: {
                 date: "Date: 2/24/2025",
-                text: "Minor bug fixes and general improvements to the combat system."
+                texts: [
+                    "Minor bug fixes.",
+                    "Improved combat mechanics.",
+                    "Enhanced visual effects.",
+                    "Fixed sound glitches.",
+                    "Updated player stats UI.",
+                    "Improved lobby layout.",
+                    "Adjusted leaderboard display."
+                ]
             },
             1: {
                 date: "Date: 2/15/2025",
-                text: "Initial release with core gameplay features and basic combat mechanics."
+                texts: [
+                    "Initial release of Noobs vs Bacons.",
+                    "Core gameplay mechanics implemented.",
+                    "Basic combat system added.",
+                    "Player customization options available.",
+                    "First map: Bacon City.",
+                    "Integrated leaderboard system.",
+                    "Sound effects and music implemented.",
+                    "Basic UI for inventory and stats.",
+                    "Team-based combat introduced."
+                ]
             }
         };
 
         const contentDiv = document.getElementById('update-content');
         const selectedUpdate = updateMap[number];
         contentDiv.innerHTML = `
-            <h3 style="font-size: 1.8em;">${selectedUpdate.date}</h3>
-            <p style="font-size: 1.2em;">${selectedUpdate.text}</p>
+            <h3 style="font-size: 1.8em; margin-bottom: 10px;">${selectedUpdate.date}</h3>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                ${selectedUpdate.texts.map(text => `<p style="font-size: 1.2em; margin: 5px 0;">• ${text}</p>`).join('')}
+            </div>
         `;
     }
 </script>
-
-<style>
-    .update-btn {
-        font-size: 1.2em;
-        background-color: #555;
-        color: white;
-        padding: 8px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        text-align: left;
-        margin: 2px 0;
-        font-family: 'Rubik', sans-serif;
-        font-weight: bold;
-    }
-
-    .update-btn:hover {
-        background-color: #777;
-    }
-
-    .update-btn:active {
-        background-color: #999;
-    }
-</style>
-
     
 
     <!-- Leaderboards Section -->
