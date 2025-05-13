@@ -5,168 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Noobs vs Bacons Website</title>
-    <link rel="icon" href="https://media.discordapp.net/attachments/1362162058509947093/1371243464062402640/New_Logo.png?ex=68226d7e&is=68211bfe&hm=aa17d9478f5042c8bc33e484d61f5e1c55252a0ebd481e8d931b2661e98ae97d&=&width=487&height=487" type="image/png">
+    <link rel="icon" href="https://media.discordapp.net/attachments/1362162058509947093/1371243464062402640/New_Logo.png" type="image/png">
     
-        <!-- Embed metadata for Discord, Twitter, and other platforms -->
+    <!-- Embed metadata for Discord, Twitter, and other platforms -->
     <meta property="og:title" content="Noobs vs Bacons Website" />
     <meta property="og:description" content="A combat team-based Roblox game where Noobs and Bacons fight for supremacy!" />
     <meta property="og:image" content="https://media.discordapp.net/attachments/1362162058509947093/1371243464062402640/New_Logo.png" />
     <meta property="og:url" content="https://fadifazbar.github.io/Noob-Vs-Bacon/" />
     <meta name="twitter:card" content="summary_large_image" />
     
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* General styles */
         body {
             font-family: 'Rubik', sans-serif;
-            background-color: #121212; /* Dark background */
+            background-color: #121212;
             color: white;
             margin: 0;
             padding: 0;
         }
 
-        /* Header styling */
-        header {
-            padding: 30px;
-            background-color: transparent; /* Transparent background */
-            width: 100%;
-            z-index: 10;
-            position: relative; /* Stay at the top */
+        .game-tab-btn {
+            font-size: 1.5em;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
         }
 
-        .logo-header {
-            text-align: center;
-            margin: 0;
+        .game-tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .title {
-            font-size: 5em; /* Bigger title */
+        .credit-item a {
             color: #f79c6a;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .noobs, .vs, .bacons {
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style-type: none;
-            text-align: center;
-            margin-top: 20px; /* Space for the title */
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #f3e8e0; /* New color for links */
             text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .credit-item a:hover {
+            color: #ffcc00;
+        }
+
+        .credit-item p {
             font-size: 1.2em;
         }
-
-        nav ul li a:hover {
-            color: #ffcc00; /* Hover color */
-            text-decoration: underline;
-        }
-
-        /* Style for the About Us Section */
-        .about-section {
-            display: flex;
-            flex-direction: column;
-            margin-top: 180px; /* Space after header */
-            margin-bottom: 80px;
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
-            border-radius: 30px;
-        }
-
-        .about-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 60px; /* Increased space between sections */
-        }
-
-        .about-image {
-            max-width: 45%; /* Bigger image */
-            margin-right: 20px;
-        }
-
-        .rotated-image {
-            transform: rotate(-10deg);
-        }
-
-        .rotated-image-2 {
-            transform: rotate(10deg); /* Rotate the second image to the other side */
-        }
-
-        .about-text {
-            font-size: 1.4em;
-            line-height: 1.6;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Darker text stroke */
-            font-weight: bold;
-            margin-top: 10px;
-            max-width: 50%;
-        }
-
-        .about-heading {
-            font-size: 2em; /* Bigger "About Us" title */
-            color: white;
-            font-weight: bold;
-            text-align: center;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Stroke effect */
-            margin-bottom: 20px;
-        }
-
-        /* Media query for smaller screen devices */
-        @media (max-width: 768px) {
-            .about-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .about-image {
-                margin-right: 0;
-                margin-bottom: 15px;
-                max-width: 80%; /* Larger images on mobile */
-            }
-
-            .about-text {
-                max-width: 100%;
-            }
-        }
-
-        footer {
-            background-color: #1f1f1f;
-            text-align: center;
-            padding: 10px;
-            color: #f79c6a;
-        }
-
-        a {
-            color: #f3e8e0; /* Link color for all links */
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #ffcc00; /* Hover color */
-            text-decoration: underline;
-        }
-
     </style>
 </head>
 <body>
     <header>
-        <div class="logo-header">
-            <h1 class="title">
-                <span class="noobs">Noobs</span> 
-                <span class="vs">Vs</span> 
-                <span class="bacons">Bacons</span>
-            </h1>
-        </div>
+        <h1>Noobs vs Bacons</h1>
         <nav>
             <ul>
                 <li><a href="#" onclick="openSection('about')">About Us</a></li>
@@ -177,216 +69,59 @@
         </nav>
     </header>
 
-    <!-- About Us Section -->
-    <section id="about" class="section-content">
-        <h2 class="about-heading">About Us</h2> <!-- Centered "About Us" title with stroke effect -->
-        <div class="about-section">
-            <div class="about-container">
-                <img src="https://media.discordapp.net/attachments/1365721620236337222/1371789764218327070/Banner_2.png?ex=68246a46&is=682318c6&hm=73060ba3e20c3a58077dcf8a580e63a2cf0b0d0336ced6077f2be18f5d6633ef&=&width=1182&height=665" alt="Game Image" class="about-image rotated-image">
-                <p class="about-text">Noobs And Bacons is a roblox team based fighting game taking the classic theme of roblox, In here players choose sides between Noobs and Bacons, battling for supremacy. Created by <a href="https://www.roblox.com/users/1663515500/profile" target="_blank">@fadi_fazbar</a> and <a href="https://www.roblox.com/users/2627552760/profile" target="_blank">@iwantlightfruitplz</a>, the game combines strategic combat with dynamic gameplay, encouraging teamwork and rivalry between the factions.</p>
-            </div>
-            <div class="about-container">
-                <img src="https://media.discordapp.net/attachments/1365721620236337222/1371463548705964042/image.png?ex=68233a76&is=6821e8f6&hm=200ac5aab62f78951130d7f9bff75a9621f594f5516455f33701c812f92b9c60&=&width=1065&height=729" alt="Game Image" class="about-image rotated-image-2">
-                <p class="about-text">The game was created in 12/18/2024 and has since grown and made a small community of players who embrace the chaotic battle between the two iconic groups. Join the fight, choose your side, and prove your loyalty!</p>
-            </div>
+    <!-- Game Section -->
+    <section id="game" class="section-content">
+        <h2>Game</h2>
+        <div>
+            <button class="game-tab-btn" onclick="showContent('updates')">Updates</button>
+            <button class="game-tab-btn" onclick="showContent('features')">In-Game Features</button>
+            <button class="game-tab-btn" onclick="showContent('credits')">Credits</button>
+        </div>
+
+        <!-- Log box for displaying content -->
+        <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%;">
+            <div id="content" style="color: white;"></div>
         </div>
     </section>
-
-    <!-- Community Section -->
-    <section id="community" class="section-content">
-        <h2>Community</h2>
-        <p>Community info goes here.</p>
-    </section>
-
-<!-- Game Section with Styled Buttons -->
-<section id="game" class="section-content" style="text-align: center;">
-    <h2 style="font-size: 3em; font-family: 'Rubik', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Game</h2>
-    <div class="game-buttons" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
-        <button id="updates-btn" class="game-tab-btn">Updates</button>
-        <button id="credits-btn" class="game-tab-btn">Credits</button>
-        <button id="features-btn" class="game-tab-btn">In Game Features</button>
-    </div>
 
     <!-- Credits Section -->
-<div id="credits-content" style="display: none; text-align: center;">
-    <h2 style="font-size: 2.5em; font-family: 'Rubik', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Credits</h2>
-    
-    <!-- Credits List -->
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-        <!-- Credit Item -->
-        <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://tr.rbxcdn.com/30DAY-Avatar-75E4652FD0639C2DC31607426F380245-Png/352/352/Avatar/Webp/noFilter" alt="Owner" style="width: 150px; border-radius: 10px; transform: rotate(5deg);">
-            <div style="text-align: left;">
-                <a href="https://www.roblox.com/users/1663515500/profile" target="_blank" style="font-size: 1.5em; color: white; text-decoration: none; font-weight: bold;">@fadi_fazbar</a>
-                <p style="font-size: 1.2em; color: white;">Role: Owner</p>
-            </div>
-        </div>
-
-        <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://tr.rbxcdn.com/30DAY-Avatar-24BDAA870D0D76EEF76885CC01F9814B-Png/352/352/Avatar/Webp/noFilter" alt="Co-Owner" style="width: 150px; border-radius: 10px; transform: rotate(-5deg);">
-            <div style="text-align: left;">
-                <a href="https://www.roblox.com/users/2627552760/profile" target="_blank" style="font-size: 1.5em; color: white; text-decoration: none; font-weight: bold;">@iwantlightfruitplz</a>
-                <p style="font-size: 1.2em; color: white;">Role: Co-Owner</p>
-            </div>
-        </div>
-
-        <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://tr.rbxcdn.com/30DAY-Avatar-90BFE30D68D21B2A4BA9B7D0EB0EABF5-Png/352/352/Avatar/Webp/noFilter" alt="VFX Designer" style="width: 150px; border-radius: 10px; transform: rotate(5deg);">
-            <div style="text-align: left;">
-                <a href="https://www.roblox.com/users/1398774436/profile" target="_blank" style="font-size: 1.5em; color: white; text-decoration: none; font-weight: bold;">@Dariuslucie</a>
-                <p style="font-size: 1.2em; color: white;">Role: VFX Designer</p>
-            </div>
-        </div>
-
-        <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://tr.rbxcdn.com/30DAY-Avatar-25FC2E4E8EFCF6425F16DD8766D276F8-Png/352/352/Avatar/Webp/noFilter" alt="Gui Designer" style="width: 150px; border-radius: 10px; transform: rotate(-5deg);">
-            <div style="text-align: left;">
-                <a href="https://www.roblox.com/users/3076342015/profile" target="_blank" style="font-size: 1.5em; color: white; text-decoration: none; font-weight: bold;">@Legends092834</a>
-                <p style="font-size: 1.2em; color: white;">Role: Gui Designer</p>
-            </div>
-        </div>
-
-        <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://tr.rbxcdn.com/30DAY-Avatar-2352F8DC4DA368A8551350A43FF78705-Png/352/352/Avatar/Webp/noFilter" alt="Gui Designer, Builder" style="width: 150px; border-radius: 10px; transform: rotate(5deg);">
-            <div style="text-align: left;">
-                <a href="https://www.roblox.com/users/1936637571/profile" target="_blank" style="font-size: 1.5em; color: white; text-decoration: none; font-weight: bold;">@Szymciakx20121234</a>
-                <p style="font-size: 1.2em; color: white;">Role: Gui Designer, Builder</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Log section inside the dark box -->
-    <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; display: flex; justify-content: center;">
-        <div id="game-content" style="width: 100%; text-align: left;">
-            <!-- Updates Layout -->
-            <div id="updates-section" style="display: none; gap: 20px;">
-                <div style="display: flex;">
-                    <!-- Update Buttons -->
-                    <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                        <button onclick="displayUpdate(5)" class="update-btn">Update 5</button>
-                        <button onclick="displayUpdate(4)" class="update-btn">Update 4</button>
-                        <button onclick="displayUpdate(3)" class="update-btn">Update 3</button>
-                        <button onclick="displayUpdate(2)" class="update-btn">Update 2</button>
-                        <button onclick="displayUpdate(1)" class="update-btn">Update 1</button>
-                    </div>
-
-                    <!-- Update Content -->
-                    <div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px; max-height: 300px; overflow-y: auto;">
-                        <h3>Select an update to view details</h3>
-                    </div>
+    <div id="credits-content" style="display: none; text-align: center;">
+        <h2 style="font-size: 2.5em; font-weight: bold;">Credits</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <div class="credit-item" style="display: flex; align-items: center; gap: 20px;">
+                <img src="https://tr.rbxcdn.com/30DAY-Avatar-75E4652FD0639C2DC31607426F380245-Png/352/352/Avatar/Webp/noFilter" alt="Owner" style="width: 150px; border-radius: 10px;">
+                <div>
+                    <a href="https://www.roblox.com/users/1663515500/profile" target="_blank">@fadi_fazbar</a>
+                    <p>Role: Owner</p>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<script>
-    function showContent(type) {
-        const updatesSection = document.getElementById('updates-section');
-        const contentDiv = document.getElementById('update-content');
-        
-        if (type === 'updates') {
-            updatesSection.style.display = 'block';
-            contentDiv.innerHTML = `<h3>Select an update to view details</h3>`;
-        } else {
-            updatesSection.style.display = 'none';
-            const contentMap = {
-                'credits': 'Developed by @fadi_fazbar and @iwantlightfruitplz. Special thanks to the Noobs vs Bacons community!',
-                'features': 'Explore the unique gameplay mechanics, including the team-based combat system and evolving battles between Noobs and Bacons.'
-            };
-            contentDiv.innerHTML = `<p>${contentMap[type]}</p>`;
-        }
-    }
-
-    function displayUpdate(number) {
-        const updateMap = {
-            5: { date: "Date: 4/26/2025", texts: ["Major update with new features.", "Improved stability.", "Added new maps.", "UI improvements.", "Bug fixes.", "New skins.", "Balance changes.", "Event system updated.", "Performance optimization."] },
-            4: { date: "Date: 4/10/2025", texts: ["Content expansion.", "New characters.", "Fixed minor bugs.", "Graphics improvements.", "Server enhancements.", "Adjusted leveling system.", "Minor UI tweaks.", "Event support added.", "Sound effect upgrades."] },
-            3: { date: "Date: 4/1/2025", texts: ["New gameplay mode.", "Bug fixes.", "Improved UI.", "Enhanced performance.", "Balanced weapons.", "Fixed animation glitches.", "Improved matchmaking."] },
-            2: { date: "Date: 3/16/2025", texts: ["New story quests.", "Improved graphics.", "Enhanced combat system.", "Fixed leaderboard issues.", "Bug fix: Invisible player glitch.", "Improved AI behavior.", "Fixed spawn issues."] },
-            1: { date: "Date: 2/15/2025", texts: ["Initial release.", "Core mechanics implemented.", "Basic UI added.", "Sound effects included.", "First map: Bacon City.", "Leaderboard integration.", "Basic team combat system.", "Player customization.", "Core game loop established."] }
-        };
-
-        const selectedUpdate = updateMap[number];
-        const contentDiv = document.getElementById('update-content');
-        contentDiv.innerHTML = `
-            <h3 style="font-size: 1.8em; margin-bottom: 10px;">${selectedUpdate.date}</h3>
-            <div style="display: flex; flex-direction: column; gap: 5px;">
-                ${selectedUpdate.texts.map(text => `<p style="font-size: 1.2em;">• ${text}</p>`).join('')}
-            </div>
-        `;
-    }
-
-    document.getElementById('updates-btn').addEventListener('click', () => showContent('updates'));
-    document.getElementById('credits-btn').addEventListener('click', () => showContent('credits'));
-    document.getElementById('features-btn').addEventListener('click', () => showContent('features'));
-</script>
-
-<style>
-    .game-tab-btn {
-        font-size: 1.5em;
-        background-color: transparent;
-        border: 2px solid white;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-family: 'Rubik', sans-serif;
-        font-weight: bold;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        cursor: pointer;
-    }
-
-    .game-tab-btn:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .update-btn {
-        font-size: 1.2em;
-        background-color: #555;
-        color: white;
-        padding: 8px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        margin: 2px 0;
-        text-align: left;
-    }
-
-    .update-btn:hover {
-        background-color: #777;
-    }
-
-    .update-btn:active {
-        background-color: #999;
-    }
-</style>
-
-    <!-- Leaderboards Section -->
-    <section id="leaderboards" class="section-content">
-        <h2>Leaderboards</h2>
-        <p>Leaderboards go here.</p>
-    </section>
 
     <footer>
         <p>&copy; 2025 Noobs vs Bacons. All rights reserved.</p>
     </footer>
 
     <script>
-        function openSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(section => section.style.display = 'none');
-
-            // Show the clicked section
-            const selectedSection = document.getElementById(sectionId);
-            selectedSection.style.display = 'block';
+        function showContent(type) {
+            const contentDiv = document.getElementById('content');
+            const contentMap = {
+                'updates': 'Latest updates and patch notes.',
+                'features': 'Explore the unique gameplay mechanics.',
+                'credits': document.getElementById('credits-content').innerHTML
+            };
+            contentDiv.innerHTML = contentMap[type];
         }
 
-        // Default to "About Us" being visible when the page loads
+        function openSection(sectionId) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
         window.onload = () => {
-            openSection('about');
+            openSection('game');
+            showContent('updates');
         };
     </script>
 </body>
