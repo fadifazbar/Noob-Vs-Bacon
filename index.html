@@ -202,130 +202,96 @@
 <section id="game" class="section-content" style="text-align: center;">
     <h2 style="font-size: 3em; font-family: 'Rubik', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Game</h2>
     <div class="game-buttons" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
-        <button onclick="showContent('updates')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Updates</button>
-        <button onclick="showContent('credits')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Credits</button>
-        <button onclick="showContent('features')" style="font-size: 1.5em; background-color: transparent; border: 2px solid white; color: white; padding: 10px 20px; border-radius: 8px; font-family: 'Rubik', sans-serif; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">In Game Features</button>
+        <button id="updates-btn" class="game-tab-btn">Updates</button>
+        <button id="credits-btn" class="game-tab-btn">Credits</button>
+        <button id="features-btn" class="game-tab-btn">In Game Features</button>
     </div>
 
     <!-- Log section inside the dark box -->
     <div id="log-box" style="background-color: #333; padding: 20px; border-radius: 10px; margin: 20px auto; width: 80%; display: flex; justify-content: center;">
-        <div id="game-content" style="display: none; width: 100%; text-align: left;">
+        <div id="game-content" style="width: 100%; text-align: left;">
             <!-- Updates Layout -->
-            <div style="display: flex; gap: 20px;">
-                <!-- Update Buttons -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-                    <button onclick="displayUpdate(5)" class="update-btn">Update 5</button>
-                    <button onclick="displayUpdate(4)" class="update-btn">Update 4</button>
-                    <button onclick="displayUpdate(3)" class="update-btn">Update 3</button>
-                    <button onclick="displayUpdate(2)" class="update-btn">Update 2</button>
-                    <button onclick="displayUpdate(1)" class="update-btn">Update 1</button>
-                </div>
+            <div id="updates-section" style="display: none; gap: 20px;">
+                <div style="display: flex;">
+                    <!-- Update Buttons -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="displayUpdate(5)" class="update-btn">Update 5</button>
+                        <button onclick="displayUpdate(4)" class="update-btn">Update 4</button>
+                        <button onclick="displayUpdate(3)" class="update-btn">Update 3</button>
+                        <button onclick="displayUpdate(2)" class="update-btn">Update 2</button>
+                        <button onclick="displayUpdate(1)" class="update-btn">Update 1</button>
+                    </div>
 
-              <!-- Update Content -->
-<div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px; max-height: 300px; overflow-y: auto;">
-    <h3>Select an update to view details</h3>
-</div>
+                    <!-- Update Content -->
+                    <div id="update-content" style="flex: 2; color: white; padding: 20px; background-color: #444; border-radius: 8px; max-height: 300px; overflow-y: auto;">
+                        <h3>Select an update to view details</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
+    function showContent(type) {
+        const updatesSection = document.getElementById('updates-section');
+        const contentDiv = document.getElementById('update-content');
+        
+        if (type === 'updates') {
+            updatesSection.style.display = 'block';
+            contentDiv.innerHTML = `<h3>Select an update to view details</h3>`;
+        } else {
+            updatesSection.style.display = 'none';
+            const contentMap = {
+                'credits': 'Developed by @fadi_fazbar and @iwantlightfruitplz. Special thanks to the Noobs vs Bacons community!',
+                'features': 'Explore the unique gameplay mechanics, including the team-based combat system and evolving battles between Noobs and Bacons.'
+            };
+            contentDiv.innerHTML = `<p>${contentMap[type]}</p>`;
+        }
+    }
+
     function displayUpdate(number) {
         const updateMap = {
-            5: {
-                date: "Date: 3/16/2025",
-                texts: [
-                    "Major content update.",
-                    "New game modes added.",
-                    "Balance changes implemented.",
-                    "Fixed bugs affecting performance.",
-                    "Improved enemy AI.",
-                    "Added new character skins.",
-                    "Optimized loading times.",
-                    "Enhanced graphics quality.",
-                    "New event added: Battle of Legends.",
-                    "Fixed leaderboard issues.",
-                    "Adjusted difficulty scaling.",
-                    "New community challenges.",
-                    "Bug fix: Infinite health glitch.",
-                    "UI improvements for mobile.",
-                    "Performance boost on low-end devices.",
-                    "Fixed crash on map loading.",
-                    "Updated sound effects."
-                ]
-            },
-            4: {
-                date: "Date: 3/1/2025",
-                texts: [
-                    "Added more game modes.",
-                    "Improved UI for better experience.",
-                    "Fixed lag in multiplayer sessions.",
-                    "Added new achievements.",
-                    "Balanced weapon damage.",
-                    "Fixed collision issues.",
-                    "Enhanced enemy spawn rates.",
-                    "Reduced server latency.",
-                    "New map: Dark Fortress.",
-                    "Updated character animations.",
-                    "Fixed hitbox problems.",
-                    "Improved NPC pathfinding.",
-                    "Bug fix: Disappearing items.",
-                    "New player customization options.",
-                    "Minor graphical updates."
-                ]
-            },
-            3: {
-                date: "Date: 2/27/2025",
-                texts: [
-                    "Improved game performance.",
-                    "Fixed visual glitches.",
-                    "Enhanced gamepad support.",
-                    "New quests added.",
-                    "Balanced XP rates.",
-                    "Improved matchmaking system.",
-                    "Updated shop items.",
-                    "New leaderboard features.",
-                    "Fixed text alignment issues.",
-                    "General UI improvements."
-                ]
-            },
-            2: {
-                date: "Date: 2/24/2025",
-                texts: [
-                    "Minor bug fixes.",
-                    "Improved combat mechanics.",
-                    "Enhanced visual effects.",
-                    "Fixed sound glitches.",
-                    "Updated player stats UI.",
-                    "Improved lobby layout.",
-                    "Adjusted leaderboard display."
-                ]
-            },
-            1: {
-                date: "Date: 2/15/2025",
-                texts: [
-                    "Initial release of Noobs vs Bacons.",
-                    "Core gameplay mechanics implemented.",
-                    "Basic combat system added.",
-                    "Player customization options available.",
-                    "First map: Bacon City.",
-                    "Integrated leaderboard system.",
-                    "Sound effects and music implemented.",
-                    "Basic UI for inventory and stats.",
-                    "Team-based combat introduced."
-                ]
-            }
+            5: { date: "Date: 4/26/2025", texts: ["Major update with new features.", "Improved stability.", "Added new maps.", "UI improvements.", "Bug fixes.", "New skins.", "Balance changes.", "Event system updated.", "Performance optimization."] },
+            4: { date: "Date: 4/10/2025", texts: ["Content expansion.", "New characters.", "Fixed minor bugs.", "Graphics improvements.", "Server enhancements.", "Adjusted leveling system.", "Minor UI tweaks.", "Event support added.", "Sound effect upgrades."] },
+            3: { date: "Date: 4/1/2025", texts: ["New gameplay mode.", "Bug fixes.", "Improved UI.", "Enhanced performance.", "Balanced weapons.", "Fixed animation glitches.", "Improved matchmaking."] },
+            2: { date: "Date: 3/16/2025", texts: ["New story quests.", "Improved graphics.", "Enhanced combat system.", "Fixed leaderboard issues.", "Bug fix: Invisible player glitch.", "Improved AI behavior.", "Fixed spawn issues."] },
+            1: { date: "Date: 2/15/2025", texts: ["Initial release.", "Core mechanics implemented.", "Basic UI added.", "Sound effects included.", "First map: Bacon City.", "Leaderboard integration.", "Basic team combat system.", "Player customization.", "Core game loop established."] }
         };
 
-        const contentDiv = document.getElementById('update-content');
         const selectedUpdate = updateMap[number];
+        const contentDiv = document.getElementById('update-content');
         contentDiv.innerHTML = `
             <h3 style="font-size: 1.8em; margin-bottom: 10px;">${selectedUpdate.date}</h3>
             <div style="display: flex; flex-direction: column; gap: 5px;">
-                ${selectedUpdate.texts.map(text => `<p style="font-size: 1.2em; margin: 5px 0;">• ${text}</p>`).join('')}
+                ${selectedUpdate.texts.map(text => `<p style="font-size: 1.2em;">• ${text}</p>`).join('')}
             </div>
         `;
     }
+
+    document.getElementById('updates-btn').addEventListener('click', () => showContent('updates'));
+    document.getElementById('credits-btn').addEventListener('click', () => showContent('credits'));
+    document.getElementById('features-btn').addEventListener('click', () => showContent('features'));
 </script>
 
 <style>
+    .game-tab-btn {
+        font-size: 1.5em;
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-family: 'Rubik', sans-serif;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+    }
+
+    .game-tab-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
     .update-btn {
         font-size: 1.2em;
         background-color: #555;
@@ -334,10 +300,8 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
-        text-align: left;
         margin: 2px 0;
-        font-family: 'Rubik', sans-serif;
-        font-weight: bold;
+        text-align: left;
     }
 
     .update-btn:hover {
@@ -348,6 +312,7 @@
         background-color: #999;
     }
 </style>
+
     
 
     <!-- Leaderboards Section -->
