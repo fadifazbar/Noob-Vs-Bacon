@@ -1,241 +1,418 @@
-
-<!DOCTYPE html><html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noobs vs Bacons Studios</title>
-  <style>
-    :root {
-      --bg-dark: #0e0e0f;
-      --bg-light: #f6f6f7;
-      --text-dark: #f1f1f1;
-      --text-light: #0a0a0a;
-      --accent: #5865f2;
-      --card-dark: #18181a;
-      --card-light: #ffffff;
-      --transition: 0.25s ease;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
-    body {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-      transition: background var(--transition), color var(--transition);
-      overflow-x: hidden;
-    }
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
-    }header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);
-  z-index: 10;
-}
-
-nav button {
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: 1rem;
-  margin: 0 1rem;
-  cursor: pointer;
-  transition: color var(--transition);
-}
-nav button:hover {
-  color: var(--accent);
-}
-
-.theme-toggle {
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: transform var(--transition);
-}
-.theme-toggle:hover {
-  transform: rotate(20deg);
-}
-
-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-h1, h2 {
-  margin-bottom: 1rem;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.card {
-  background: var(--card-dark);
-  padding: 1.5rem;
-  border-radius: 10px;
-  transition: transform var(--transition), background var(--transition);
-}
-body.light .card {
-  background: var(--card-light);
-}
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.updates .update-card {
-  cursor: pointer;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
-}
-.modal-content {
-  background: var(--card-dark);
-  color: var(--text-dark);
-  padding: 2rem;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  text-align: left;
-}
-body.light .modal-content {
-  background: var(--card-light);
-  color: var(--text-light);
-}
-.close-btn {
-  float: right;
-  cursor: pointer;
-  color: var(--accent);
-}
-
-footer {
-  padding: 1rem;
-  text-align: center;
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Noobs Vs Bacons — Reworked Vibrant</title>
+<link rel="icon" href="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root{
+    --bg-0: #0b0710;
+    --bg-1: linear-gradient(135deg,#0f0b1a 0%, #121426 40%, #071228 100%);
+    --card: rgba(255,255,255,0.04);
+    --glass: rgba(255,255,255,0.04);
+    --muted: #9fb0d6;
+    --noobs: #FFD400;
+    --bacons: #54DAFF;
+    --vs: #FF3D3D;
+    --accent-glow: 0 8px 28px rgba(84,218,255,0.12);
+    --radius: 16px;
   }
-  nav button {
-    margin: 0.5rem 0;
+  [data-theme="light"]{
+    --bg-0:#f6f8fb;
+    --bg-1: linear-gradient(135deg,#ffffff 0%, #f1f5f9 60%, #eef2f6 100%);
+    --card: rgba(2,6,23,0.04);
+    --glass: rgba(2,6,23,0.03);
+    --muted:#556174;
+    --noobs:#ffb400;
+    --bacons:#0ea5ff;
+    --vs:#ff3d3d;
+    --accent-glow: 0 8px 28px rgba(14,165,255,0.08);
   }
-}
 
-  </style>
+  /* base */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, 'Segoe UI', system-ui, -apple-system, "Helvetica Neue", Arial;
+    background: var(--bg-1);
+    color: #e6eef8;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+    padding:18px;
+    transition: background .35s ease, color .35s ease;
+  }
+
+  /* animated background accent */
+  .bg-blob{
+    position:fixed; inset: -20% -10% auto auto; width:60vw; height:60vh; pointer-events:none; z-index:0;
+    background: radial-gradient(circle at 20% 20%, rgba(255,212,77,0.12), transparent 12%),
+                radial-gradient(circle at 80% 80%, rgba(84,218,255,0.09), transparent 10%);
+    filter: blur(40px); transform: translateZ(0);
+    mix-blend-mode: screen;
+  }
+
+  .container{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:28px 0}
+  .brand{display:flex;gap:16px;align-items:center}
+  .logo{width:92px;height:92px;border-radius:14px;object-fit:cover;box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+  .game-title{font-size:36px;font-weight:800;letter-spacing:-1px}
+  .game-title .noobs{color:var(--noobs)}
+  .game-title .vs{color:var(--vs);margin:0 6px}
+  .game-title .bacons{color:var(--bacons)}
+
+  /* top right controls */
+  .controls{display:flex;gap:10px;align-items:center}
+  .nav-btn{
+    background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    color:inherit;border:1px solid rgba(255,255,255,0.06);
+    padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s;
+  }
+  .nav-btn:hover{transform:translateY(-4px); box-shadow:var(--accent-glow); border-color: rgba(255,255,255,0.10)}
+  .theme-toggle{
+    width:44px;height:44px;border-radius:12px;display:inline-grid;place-items:center;
+    background:var(--glass);cursor:pointer;border:1px solid rgba(255,255,255,0.05)
+  }
+
+  /* sections */
+  .section{
+    display:none;background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:var(--radius); padding:28px; margin:18px 0; border:1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px); box-shadow: 0 8px 30px rgba(2,6,23,0.35);
+  }
+  .section.active{display:block}
+  .section h2{font-size:22px;margin-bottom:12px;color:var(--noobs);border-bottom:1px solid rgba(255,255,255,0.03);padding-bottom:10px}
+
+  p, ul{color:var(--muted);font-size:15px;line-height:1.5}
+
+  a{color:var(--noobs);text-decoration:underline}
+
+  /* sub nav */
+  .sub-nav{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+  .sub-btn{padding:10px 16px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--muted);font-weight:700}
+  .sub-btn.active{background:linear-gradient(90deg, rgba(84,218,255,0.08), rgba(255,212,77,0.04));color:#000;border-color:transparent;box-shadow:var(--accent-glow)}
+
+  /* updates list */
+  .updates-list{display:grid;gap:12px}
+  .update-item{
+    display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(255,255,255,0.01));
+    border-left:4px solid var(--noobs);cursor:pointer;transition:transform .18s ease, background .18s;
+  }
+  .update-item:hover{transform:translateX(6px);background:linear-gradient(90deg, rgba(84,218,255,0.06), rgba(255,212,77,0.03))}
+  .update-date{min-width:120px;color:var(--bacons);font-weight:800}
+  .update-desc strong{display:block;font-size:15px;color:var(--noobs);margin-bottom:6px}
+  .update-desc span{color:var(--muted);font-size:14px;display:block}
+
+  /* features grid */
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px}
+  .feature-card{padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border:1px solid rgba(255,255,255,0.03);text-align:center}
+  .feature-img{width:100%;height:120px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); display:flex;align-items:center;justify-content:center}
+  .feature-card h3{margin:10px 0 6px}
+  .feature-card p{color:var(--muted);font-size:14px}
+
+  /* socials */
+  .socials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:12px}
+  .social-card{padding:16px;border-radius:12px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);transition:transform .18s, box-shadow .18s}
+  .social-card:hover{transform:translateY(-8px);box-shadow:var(--accent-glow)}
+  .social-icon{font-size:38px;margin-bottom:8px}
+  .social-card h3{margin:0}
+
+  /* credits */
+  .credits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:12px}
+  .credit-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
+  .credit-avatar img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--noobs)}
+
+  /* modal */
+  .modal-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);visibility:hidden;opacity:0;transition:opacity .24s, visibility .24s;z-index:9999}
+  .modal-overlay.active{visibility:visible;opacity:1}
+  .modal-content{width:92%;max-width:640px;background:linear-gradient(180deg,#0b1220,#0f1724);padding:22px;border-radius:14px;border:2px solid var(--noobs);box-shadow:0 16px 48px rgba(0,0,0,0.6)}
+  .modal-title{font-size:20px;color:var(--noobs);margin-bottom:8px}
+  .close-modal{background:var(--noobs);color:#000;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+
+  footer{text-align:center;padding:22px;color:var(--bacons);font-size:14px}
+
+  /* responsive tweaks */
+  @media (max-width:900px){
+    .brand{flex-direction:row;align-items:center}
+    .logo{width:72px;height:72px}
+    .game-title{font-size:24px}
+    header{padding:12px 0}
+  }
+  @media (max-width:600px){
+    .nav-btn{padding:8px 12px;font-size:14px}
+    .game-title{font-size:20px}
+    .feature-img{height:96px}
+    .update-date{min-width:88px}
+    .container{padding:0 12px}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h2>Noobs vs Bacons</h2>
-    <nav>
-      <button onclick="showSection('about')">About</button>
-      <button onclick="showSection('game')">Game</button>
-      <button onclick="showSection('socials')">Socials</button>
-      <button onclick="showSection('updates')">Updates</button>
-    </nav>
-    <div class="theme-toggle" id="themeToggle">🌙</div>
-  </header>  <main>
-    <section id="about" class="visible">
-      <h1>Welcome to Noobs vs Bacons Studios</h1>
-      <p>The ultimate showdown between Noobs and Bacons. Build, battle, and dominate.</p>
-    </section><section id="game" style="display:none">
-  <h2>Game Overview</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>Epic Battles</h3>
-      <p>Fight across multiple maps with diverse weapons.</p>
-    </div>
-    <div class="card">
-      <h3>Base Building</h3>
-      <p>Create defenses and outsmart your enemies.</p>
-    </div>
-    <div class="card">
-      <h3>Customization</h3>
-      <p>Style your avatar and loadouts for domination.</p>
+  <div class="bg-blob" aria-hidden="true"></div>
+
+  <div class="container" id="site">
+    <header role="banner">
+      <div class="brand">
+        <img class="logo" src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="NVB logo">
+        <div>
+          <div class="game-title"><span class="noobs">Noobs</span><span class="vs">Vs</span><span class="bacons">Bacons</span></div>
+          <div style="color:var(--muted);font-size:13px">Roblox PvP — fast rounds, big vibes</div>
+        </div>
+      </div>
+
+      <div class="controls" role="navigation" aria-label="Main navigation">
+        <button class="nav-btn" onclick="showSection('about')">❓ About Us</button>
+        <button class="nav-btn" onclick="showSection('game')">🎮 Game</button>
+        <button class="nav-btn" onclick="showSection('socials')">🌐 Socials</button>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">🌙</div>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="section active" role="region" aria-label="About">
+      <h2>About Noobs Vs Bacons</h2>
+      <p><strong>Noobs Vs Bacons</strong> is an action-packed, team-based Roblox experience where chaos meets strategy. Fast matches. Deep replay.</p>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:240px">
+          <p><strong>Release Date:</strong> December 18, 2024</p>
+          <p><strong>Creator:</strong> <a href="https://www.roblox.com/users/1663515500/profile" target="_blank" rel="noopener">@fadi_fazbar</a></p>
+          <p><strong>Origin:</strong> Midnight idea turned real after a rebuild of a previous project.</p>
+        </div>
+        <div style="width:260px">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
+            <h4 style="margin:0 0 8px;color:var(--noobs)">Quick Links</h4>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a class="nav-btn" href="https://www.roblox.com/users/1663515500/profile" target="_blank">Owner profile</a>
+              <a class="nav-btn" href="https://roblox.com/groups/13224321/huggy-robux" target="_blank">Roblox Group</a>
+              <button class="nav-btn" id="jumpToUpdates">View Updates</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="updatesArea" style="margin-top:18px">
+        <h2 style="margin-top:6px">Update Log</h2>
+        <div class="updates-list" id="updatesList" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Game -->
+    <section id="game" class="section" role="region" aria-label="Game">
+      <h2>Game</h2>
+      <div class="sub-nav" role="tablist" aria-label="Game sub navigation">
+        <button class="sub-btn active" data-tab="updates" onclick="showGameTab(event,'updates')">🆕 Updates</button>
+        <button class="sub-btn" data-tab="features" onclick="showGameTab(event,'features')">✨ Features</button>
+        <button class="sub-btn" data-tab="credits" onclick="showGameTab(event,'credits')">💖 Credits</button>
+      </div>
+
+      <div id="updates" class="game-tab" style="display:block">
+        <div class="updates-list" id="gameUpdates"></div>
+      </div>
+
+      <div id="features" class="game-tab" style="display:none">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-img"><img src="https://images.unsplash.com/photo-1526406915891-5f6c56b12c0a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=03e5e8a5f6a3de2e6b6b7b2c1a7c8b6f" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3>5v5 Team Battles</h3><p>Short matches. Roles matter.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-img"><img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c1cc0b8f1b1a2b3c4d5e6f7a8b9c0d1" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3>Unique Abilities</h3><p>Chaos Dash. Tactical Shield.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b8f9c0d5a4e3f2b1c0d9e8f7a6b5c4d" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+            <h3>Ranked Mode</h3><p>Seasonal rewards and leaderboards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="credits" class="game-tab" style="display:none">
+        <p>Special thanks to these amazing contributors:</p>
+        <div class="credits-grid" id="creditsGrid"></div>
+        <p style="margin-top:14px;color:var(--bacons)">Want to join the team? Contact us in social media!</p>
+      </div>
+    </section>
+
+    <!-- Socials -->
+    <section id="socials" class="section" role="region" aria-label="Socials">
+      <h2>Join Our Community</h2>
+      <p>Follow us and stay updated with the latest news, events, and gameplay!</p>
+      <div class="socials-grid" id="socialsGrid">
+        <a class="social-card youtube" href="https://youtube.com/@noobsvsbacons?feature=shared" target="_blank" rel="noopener">
+          <div class="social-icon"><i class="fab fa-youtube"></i></div><h3>YouTube</h3>
+        </a>
+        <a class="social-card discord" href="https://discord.gg/6XvdgKeuhw" target="_blank" rel="noopener">
+          <div class="social-icon"><i class="fab fa-discord"></i></div><h3>Discord</h3>
+        </a>
+        <a class="social-card twitter" href="https://twitter.com/Fadi_Fazbar" target="_blank" rel="noopener">
+          <div class="social-icon"><i class="fab fa-x-twitter"></i></div><h3>Twitter</h3>
+        </a>
+        <a class="social-card roblox" href="https://roblox.com/groups/13224321/huggy-robux" target="_blank" rel="noopener">
+          <div class="social-icon"><img src="https://static.wikia.nocookie.net/logopedia/images/e/eb/Roblox-circle-logo.svg/revision/latest/scale-to-width-down/200?cb=20250420213113" alt="roblox" style="width:28px;height:28px"></div><h3>Roblox Group</h3>
+        </a>
+      </div>
+    </section>
+
+    <footer>© 2025 Noobs Vs Bacons • Made with energy by the NVB Dev Team</footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="modal-title" id="modalTitle">Update</div>
+        <button class="close-modal" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody" style="color:var(--muted)"></div>
     </div>
   </div>
-</section>
 
-<section id="socials" style="display:none">
-  <h2>Join the Community</h2>
-  <div class="card-grid">
-    <div class="card"><a href="https://discord.gg/" target="_blank">Discord</a></div>
-    <div class="card"><a href="https://twitter.com/" target="_blank">Twitter</a></div>
-    <div class="card"><a href="https://youtube.com/" target="_blank">YouTube</a></div>
-  </div>
-</section>
+<script>
+/* --------- Data (kept content, mapped to the HTML buttons) --------- */
+const UPDATES = {
+  update4: { title:"Base Renaissance", date:"January 16, 2025", content:
+    `<ul>
+      <li>Fresh base rebuild and UI glow-up.</li>
+      <li>New musics and smoother performance.</li>
+      <li>Badge fixes and quality-of-life improvements.</li>
+    </ul>`},
+  update3: { title:"Rebuilding & Reload", date:"January 12, 2025", content:
+    `<ul>
+      <li>Base reset, new weapons and beats.</li>
+      <li>Sky and visual improvements.</li>
+    </ul>`},
+  update2: { title:"Unbugging The Game", date:"December 20, 2024", content:
+    `<p>Patched a set of release bugs to stabilize gameplay.</p>`},
+  update1: { title:"The Start of Noobs Vs Bacons", date:"December 18, 2024", content:
+    `<p>First release. 2 teams. 3 maps. The beginning.</p>`}
+};
 
-<section id="updates" class="updates" style="display:none">
-  <h2>Update Log</h2>
-  <div class="card-grid">
-    <div class="card update-card" onclick="openModal('u1')">
-      <h3>Update 1.16.2025</h3>
-      <p>Major rework with new base, badges, and weapons.</p>
-    </div>
-  </div>
-</section>
+/* credits & socials data */
+const CREDITS = [
+  {name:'@fadi_fazbar', role:'Owner', url:'https://www.roblox.com/users/1663515500/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-0DC56C16BCCF9ED5D37A3D0C0F184D9A-Png/150/150/AvatarHeadshot/Webp/noFilter'},
+  {name:'@iwantlightfruitplz', role:'Co-Owner', url:'https://www.roblox.com/users/2627552760/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-CC268BBA0DDB4EA7B442C117717663B5-Png/150/150/AvatarHeadshot/Webp/noFilter'},
+  {name:'@gmikolaj394', role:'Game Manager', url:'https://www.roblox.com/users/2347375276/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A921B7B62126196AE72B85157313110F-Png/150/150/AvatarHeadshot/Webp/noFilter'},
+  {name:'@Dariuslucie', role:'Animator & VFX Designer', url:'https://www.roblox.com/users/1398774436/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-C12DA68BF42AF7941F67CFBA8A3F7485-Png/150/150/AvatarHeadshot/Webp/noFilter'},
+  {name:'@Szymciakx20121234', role:'Builder & GUI Designer', url:'https://www.roblox.com/users/1936637571/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1FCE32A403441767C7800EAB3D9815AA-Png/150/150/AvatarHeadshot/Webp/noFilter'}
+];
 
-  </main>  <div id="u1" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('u1')">✖</span>
-      <h3>Update 1.16.2025</h3>
-      <ul>
-        <li>Reworked Update Log GUI</li>
-        <li>New Base Rework</li>
-        <li>2 Badges Fixed</li>
-        <li>10 New Musics</li>
-        <li>New Skybox</li>
-        <li>2 New Weapons</li>
-        <li>Bases Rework</li>
-      </ul>
-    </div>
-  </div>  <footer>
-    <p>© 2025 Noobs vs Bacons Studios. All rights reserved.</p>
-  </footer>  <script>
-    const sections = document.querySelectorAll('main section');
-    function showSection(id) {
-      sections.forEach(sec => sec.style.display = sec.id === id ? 'block' : 'none');
-    }
+/* render updates (both About and Game update panels) */
+function renderUpdates() {
+  const updatesList = document.getElementById('updatesList');
+  const gameUpdates = document.getElementById('gameUpdates');
+  updatesList.innerHTML = '';
+  gameUpdates.innerHTML = '';
+  // keep original chronological vibe (newest first)
+  const keys = ['update4','update3','update2','update1'];
+  keys.forEach(k=>{
+    const u = UPDATES[k];
+    if(!u) return;
+    const el = document.createElement('div');
+    el.className = 'update-item';
+    el.tabIndex = 0;
+    el.innerHTML = `<div class="update-date">${u.date}</div>
+                    <div class="update-desc"><strong>${u.title}</strong><span>${stripHtml(u.content).slice(0,140)}</span></div>`;
+    el.addEventListener('click', ()=> openModal(k));
+    el.addEventListener('keydown', (e)=> { if(e.key==='Enter') openModal(k); });
+    updatesList.appendChild(el);
+    // clone for game updates
+    gameUpdates.appendChild(el.cloneNode(true));
+  });
+}
 
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-    }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+/* strip html helper for excerpt */
+function stripHtml(html){
+  const tmp = document.createElement('div'); tmp.innerHTML = html; return tmp.textContent || tmp.innerText || '';
+}
 
-    const toggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light');
-      toggle.textContent = '☀️';
-    }
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      const isLight = document.body.classList.contains('light');
-      toggle.textContent = isLight ? '☀️' : '🌙';
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
-  </script></body>
+/* render credits */
+function renderCredits(){
+  const grid = document.getElementById('creditsGrid'); grid.innerHTML='';
+  CREDITS.forEach(c=>{
+    const d = document.createElement('div'); d.className='credit-item';
+    d.innerHTML = `<div class="credit-avatar"><img src="${c.img}" alt="${c.name}"></div>
+                   <div style="text-align:center"><a href="${c.url}" target="_blank" rel="noopener" style="color:var(--noobs);font-weight:700">${c.name}</a><div style="color:var(--muted);font-size:13px">${c.role}</div></div>`;
+    grid.appendChild(d);
+  });
+}
+
+/* show/hide main sections */
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=> s.classList.toggle('active', s.id===id));
+  // when switching to game, ensure its default subtab
+  if(id==='game'){
+    const first = document.querySelector('.sub-btn');
+    if(first){ document.querySelectorAll('.sub-btn').forEach(b=> b.classList.remove('active')); first.classList.add('active'); showGameTab(null,'updates'); }
+  }
+  // scroll to top of container for small screens
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* subtab for game */
+function showGameTab(e, id){
+  // remove active from all
+  document.querySelectorAll('.sub-btn').forEach(b=> b.classList.toggle('active', b.dataset.tab===id));
+  // show proper content
+  document.querySelectorAll('.game-tab').forEach(t=> t.style.display = 'none');
+  const el = document.getElementById(id);
+  if(el) el.style.display = 'block';
+}
+
+
+/* modal logic */
+function openModal(key){
+  const data = UPDATES[key];
+  if(!data) return;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalBody').innerHTML = `<p style="color:var(--muted)"><strong>${data.date}</strong></p>` + data.content;
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.add('active'); overlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e){
+  if(e && e.target !== document.getElementById('modalOverlay')) return;
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('active'); overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+/* theme toggle with localStorage */
+const THEME_KEY = 'nvb_theme_v2';
+const root = document.documentElement;
+function applyTheme(t){
+  root.setAttribute('data-theme', t);
+  document.getElementById('themeToggle').textContent = t==='dark' ? '🌙' : '☀️';
+  localStorage.setItem(THEME_KEY, t);
+}
+(function initTheme(){
+  const saved = localStorage.getItem(THEME_KEY);
+  if(saved) return applyTheme(saved);
+  // default dark
+  applyTheme('dark');
+})();
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  const current = root.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+/* jump to updates button */
+document.getElementById('jumpToUpdates').addEventListener('click', ()=> {
+  showSection('about'); document.getElementById('updatesArea').scrollIntoView({behavior:'smooth'});
+});
+
+/* accessibility and keyboard */
+document.addEventListener('keydown', (e)=> { if(e.key==='Escape') closeModal(); });
+
+/* init render */
+renderUpdates();
+renderCredits();
+
+/* small fix: ensure social links open in new tab from keyboard focus */
+document.querySelectorAll('.social-card').forEach(s=> s.addEventListener('keydown', e=> { if(e.key==='Enter') s.click(); }));
+</script>
+</body>
 </html>
