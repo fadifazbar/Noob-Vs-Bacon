@@ -1,502 +1,241 @@
-<!doctype html>
 
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Noobs Vs Bacons — Reworked</title>
-  <link rel="icon" href="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noobs vs Bacons Studios</title>
   <style>
-    /* ----------------- Theme variables (light & dark) ----------------- */
-    :root{
-      --bg: #0f1116;
-      --panel: rgba(255,255,255,0.03);
-      --muted: #9aa4b2;
-      --text: #e6eef8;
-      --accent: #ffd24d;
-      --accent-2: #54DAFF;
-      --glass: rgba(255,255,255,0.04);
-      --shadow: 0 6px 20px rgba(2,6,23,0.6);
-      --radius: 14px;
-    }[data-theme="light"]{
-  --bg: #f6f8fb;
-  --panel: rgba(0,0,0,0.04);
-  --muted: #4b5563;
-  --text: #0b1320;
-  --accent: #ffb400;
-  --accent-2: #0ea5ff;
-  --glass: rgba(255,255,255,0.7);
-  --shadow: 0 6px 20px rgba(11,19,32,0.08);
+    :root {
+      --bg-dark: #0e0e0f;
+      --bg-light: #f6f6f7;
+      --text-dark: #f1f1f1;
+      --text-light: #0a0a0a;
+      --accent: #5865f2;
+      --card-dark: #18181a;
+      --card-light: #ffffff;
+      --transition: 0.25s ease;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 10;
 }
 
-/* ----------------- Base ----------------- */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg,var(--bg), shade(#000000, 5%));
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:28px;
+nav button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+nav button:hover {
+  color: var(--accent);
 }
 
-/* ----------------- Layout ----------------- */
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns: 1fr 350px;
-  gap:24px;
-  align-items:start;
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform var(--transition);
+}
+.theme-toggle:hover {
+  transform: rotate(20deg);
 }
 
-header.site-header{
-  grid-column:1/-1;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+h1, h2 {
+  margin-bottom: 1rem;
 }
 
-.logo-row{display:flex; gap:16px; align-items:center}
-.logo-row img{width:74px; height:74px; border-radius:12px; object-fit:cover;}
-.title{
-  line-height:1; 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
-.title h1{font-size:20px; margin:0; letter-spacing:-0.2px}
-.title p{margin:4px 0 0; color:var(--muted); font-size:13px}
+.card {
+  background: var(--card-dark);
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: transform var(--transition), background var(--transition);
+}
+body.light .card {
+  background: var(--card-light);
+}
+.card:hover {
+  transform: translateY(-6px);
+}
 
-/* ----------------- Controls ----------------- */
-.controls{display:flex; gap:10px; align-items:center}
-.btn{background:var(--panel); border:1px solid rgba(255,255,255,0.04); padding:10px 12px; border-radius:10px; cursor:pointer; color:var(--text);}
-.btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
-.theme-toggle{display:inline-flex; gap:8px; align-items:center}
+.updates .update-card {
+  cursor: pointer;
+}
 
-/* ----------------- Main content ----------------- */
-main{padding:18px; background:linear-gradient(180deg,var(--panel), rgba(0,0,0,0.02)); border-radius:var(--radius); border:1px solid rgba(255,255,255,0.03)}
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+.modal-content {
+  background: var(--card-dark);
+  color: var(--text-dark);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+}
+body.light .modal-content {
+  background: var(--card-light);
+  color: var(--text-light);
+}
+.close-btn {
+  float: right;
+  cursor: pointer;
+  color: var(--accent);
+}
 
-nav.tabs{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap}
-.tab{padding:10px 14px; border-radius:12px; background:transparent; color:var(--muted); cursor:pointer; border:1px solid transparent}
-.tab.active{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00)); color:var(--text); border-color:rgba(255,255,255,0.03)}
+footer {
+  padding: 1rem;
+  text-align: center;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
 
-section.page{display:none}
-section.page.active{display:block}
-
-/* ----------------- About ----------------- */
-.about-grid{display:grid; grid-template-columns:1fr 280px; gap:18px}
-.about-card{padding:16px; border-radius:12px; background:var(--glass); border:1px solid rgba(255,255,255,0.03)}
-.meta{font-size:13px; color:var(--muted); margin-top:8px}
-
-/* ----------------- Update log ----------------- */
-.updates{display:grid; gap:12px}
-.update-card{display:flex; gap:12px; padding:12px; align-items:flex-start; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border:1px solid rgba(255,255,255,0.03); cursor:pointer}
-.update-date{min-width:110px; font-weight:700; color:var(--accent-2)}
-.update-body h4{margin:0;font-size:15px}
-.update-body p{margin:6px 0 0; color:var(--muted); font-size:13px}
-
-/* ----------------- Features ----------------- */
-.features{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px}
-.feature{padding:14px;border-radius:12px;background:var(--glass); border:1px solid rgba(255,255,255,0.03); text-align:center}
-.feature img{width:100%; height:110px; object-fit:cover; border-radius:8px; margin-bottom:10px}
-.feature h3{margin:6px 0 0; font-size:15px}
-
-/* ----------------- Right column ----------------- */
-aside.panel{padding:18px;border-radius:var(--radius); background:linear-gradient(180deg,var(--panel), rgba(0,0,0,0.02)); border:1px solid rgba(255,255,255,0.03)}
-.socials{display:grid; gap:10px}
-.social-card{display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px; background:transparent; cursor:pointer; border:1px solid transparent}
-.social-card:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border-color:rgba(255,255,255,0.03)}
-.social-card img{width:38px; height:38px; object-fit:cover; border-radius:8px}
-.social-card h4{margin:0; font-size:14px}
-.social-card p{margin:0; color:var(--muted); font-size:12px}
-
-/* ----------------- Credits grid ----------------- */
-.credits{display:grid; gap:10px}
-.credit{display:flex; gap:12px; align-items:center; padding:8px; border-radius:8px; background:transparent}
-.credit img{width:44px;height:44px;border-radius:8px}
-.credit a{color:var(--accent); text-decoration:none}
-
-/* ----------------- Modal ----------------- */
-.modal-root{position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:28px; z-index:1200}
-.modal-root.active{display:flex}
-.modal{width:100%; max-width:720px; background:linear-gradient(180deg,var(--panel), rgba(0,0,0,0.02)); border-radius:14px; padding:20px; border:1px solid rgba(255,255,255,0.04)}
-.modal header{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
-.modal .modal-body{color:var(--muted)}
-
-/* ----------------- Footer ----------------- */
-footer{grid-column:1/-1; text-align:center; color:var(--muted); margin-top:12px; font-size:13px}
-
-@media (max-width:1000px){
-  .wrap{grid-template-columns:1fr}
-  .about-grid{grid-template-columns:1fr}
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+  }
+  nav button {
+    margin: 0.5rem 0;
+  }
 }
 
   </style>
 </head>
 <body>
-  <div class="wrap" id="app">
-    <header class="site-header">
-      <div class="logo-row">
-        <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="NVB logo">
-        <div class="title">
-          <h1>Noobs Vs Bacons</h1>
-          <p>Team chaos vs tactical bacons. Roblox PvP experience.</p>
-        </div>
-      </div><div class="controls">
-    <div style="display:flex;gap:8px;align-items:center">
-      <button class="btn" id="open-about">About</button>
-      <button class="btn" id="open-game">Game</button>
-      <button class="btn" id="open-socials">Socials</button>
+  <header>
+    <h2>Noobs vs Bacons</h2>
+    <nav>
+      <button onclick="showSection('about')">About</button>
+      <button onclick="showSection('game')">Game</button>
+      <button onclick="showSection('socials')">Socials</button>
+      <button onclick="showSection('updates')">Updates</button>
+    </nav>
+    <div class="theme-toggle" id="themeToggle">🌙</div>
+  </header>  <main>
+    <section id="about" class="visible">
+      <h1>Welcome to Noobs vs Bacons Studios</h1>
+      <p>The ultimate showdown between Noobs and Bacons. Build, battle, and dominate.</p>
+    </section><section id="game" style="display:none">
+  <h2>Game Overview</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Epic Battles</h3>
+      <p>Fight across multiple maps with diverse weapons.</p>
     </div>
-
-    <div class="theme-toggle">
-      <button class="btn" id="themeToggle" title="Toggle theme"><span id="themeIcon">🌙</span></button>
+    <div class="card">
+      <h3>Base Building</h3>
+      <p>Create defenses and outsmart your enemies.</p>
     </div>
-  </div>
-</header>
-
-<main>
-  <nav class="tabs" role="tablist" aria-label="Main tabs">
-    <button class="tab active" data-target="aboutTab">About</button>
-    <button class="tab" data-target="gameTab">Game</button>
-    <button class="tab" data-target="socialsTab">Socials</button>
-  </nav>
-
-  <section id="aboutTab" class="page active">
-    <div class="about-grid">
-      <div class="about-card">
-        <h2>About Noobs Vs Bacons</h2>
-        <p style="margin-top:8px">Noobs Vs Bacons is an action-packed team-based Roblox experience. Chaos for noobs. Strategy for bacons. Fast rounds. Deep replay.</p>
-        <p class="meta"><strong>Release Date:</strong> December 18, 2024</p>
-        <p class="meta"><strong>Creator:</strong> <a href="https://www.roblox.com/users/1663515500/profile" target="_blank">@fadi_fazbar</a></p>
-        <p class="meta"><strong>Origin:</strong> Idea sparked after rebuilding from a previous project. Midnight thoughts become maps.</p>
-      </div>
-
-      <aside class="about-card">
-        <h3>Quick Links</h3>
-        <div style="margin-top:8px; display:flex; gap:8px; flex-direction:column">
-          <a class="btn" href="https://www.roblox.com/users/1663515500/profile" target="_blank">Owner profile</a>
-          <a class="btn" href="https://roblox.com/groups/13224321/huggy-robux" target="_blank">Roblox Group</a>
-          <a class="btn" href="#updates" id="jumpUpdates">Jump to updates</a>
-        </div>
-      </aside>
-    </div>
-
-    <div style="margin-top:16px" id="updates">
-      <h3 style="margin-bottom:8px">Update Log</h3>
-      <div class="updates" id="updatesList">
-        <!-- Cards are created by JS -->
-      </div>
-    </div>
-  </section>
-
-  <section id="gameTab" class="page">
-    <h2 style="margin-top:0">Game</h2>
-    <div style="margin-top:12px">
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px">
-        <button class="tab" style="padding:8px 12px" data-feature="updatesTab">Updates</button>
-        <button class="tab" style="padding:8px 12px" data-feature="featuresTab">Features</button>
-        <button class="tab" style="padding:8px 12px" data-feature="creditsTab">Credits</button>
-      </div>
-
-      <div id="updatesTab">
-        <p style="color:var(--muted); margin-bottom:8px">Click a card for details.</p>
-        <div class="updates" id="gameUpdatesList"></div>
-      </div>
-
-      <div id="featuresTab" style="display:none">
-        <div class="features" id="featuresGrid">
-          <div class="feature">
-            <img src="https://images.unsplash.com/photo-1526406915891-5f6c56b12c0a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=03e5e8a5f6a3de2e6b6b7b2c1a7c8b6f" alt="Team battle">
-            <h3>5v5 Team Battles</h3>
-            <p style="color:var(--muted); font-size:13px">Short matches. Deep roles.</p>
-          </div>
-
-          <div class="feature">
-            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c1cc0b8f1b1a2b3c4d5e6f7a8b9c0d1" alt="Abilities">
-            <h3>Unique Abilities</h3>
-            <p style="color:var(--muted); font-size:13px">Chaos Dash. Tactical Shield. Power diversity.</p>
-          </div>
-
-          <div class="feature">
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b8f9c0d5a4e3f2b1c0d9e8f7a6b5c4d" alt="Ranked">
-            <h3>Ranked Mode</h3>
-            <p style="color:var(--muted); font-size:13px">Seasonal rewards. Leaderboards.</p>
-          </div>
-
-          <div class="feature">
-            <img src="https://images.unsplash.com/photo-1557682250-9670b4d9f6d0?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f3d6a2c9b1a0c6d5e4f3b2a1c0d9e8f" alt="Maps">
-            <h3>Maps & Events</h3>
-            <p style="color:var(--muted); font-size:13px">Bacon Citadel. Sandy Shores. Seasonal events.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <div id="creditsTab" style="display:none">
-        <p style="color:var(--muted); margin-bottom:8px">Team & contributors</p>
-        <div class="credits" id="creditsList">
-          <!-- Credits inserted by JS -->
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="socialsTab" class="page">
-    <h2 style="margin-top:0">Socials</h2>
-    <p style="color:var(--muted)">Follow and join the community.</p>
-    <aside style="margin-top:12px">
-      <div class="socials" id="socialsList">
-        <!-- Social cards via JS -->
-      </div>
-    </aside>
-  </section>
-
-</main>
-
-<aside class="panel">
-  <h3 style="margin-top:0">Quick Socials</h3>
-  <div style="height:12px"></div>
-  <div class="socials" id="rightSocials">
-    <div class="social-card" data-url="https://youtube.com/@noobsvsbacons?feature=shared">
-      <img src="https://i.postimg.cc/J4zKQ2x3/youtube.png" alt="youtube">
-      <div>
-        <h4>YouTube</h4>
-        <p>News and trailers</p>
-      </div>
-    </div>
-
-    <div class="social-card" data-url="https://discord.gg/6XvdgKeuhw">
-      <img src="https://i.postimg.cc/0QmPj2tP/discord.png" alt="discord">
-      <div>
-        <h4>Discord</h4>
-        <p>Join the devs</p>
-      </div>
-    </div>
-
-    <div class="social-card" data-url="https://twitter.com/Fadi_Fazbar">
-      <img src="https://i.postimg.cc/4xgq5r8j/x.png" alt="x">
-      <div>
-        <h4>Twitter</h4>
-        <p>Short updates</p>
-      </div>
-    </div>
-
-    <div class="social-card" data-url="https://roblox.com/groups/13224321/huggy-robux">
-      <img src="https://static.wikia.nocookie.net/logopedia/images/e/eb/Roblox-circle-logo.svg/revision/latest/scale-to-width-down/200?cb=20250420213113" alt="roblox">
-      <div>
-        <h4>Roblox Group</h4>
-        <p>Join the group</p>
-      </div>
+    <div class="card">
+      <h3>Customization</h3>
+      <p>Style your avatar and loadouts for domination.</p>
     </div>
   </div>
+</section>
 
-  <hr style="margin:14px 0 12px; border:none; border-top:1px solid rgba(255,255,255,0.03)">
-  <h4 style="margin:0 0 8px">Support</h4>
-  <p style="margin:0; color:var(--muted); font-size:13px">Want to help build? Reach out on socials.</p>
-</aside>
-
-<div class="modal-root" id="modalRoot" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true">
-    <header>
-      <h3 id="modalTitle">Title</h3>
-      <div style="display:flex;gap:8px; align-items:center">
-        <button class="btn" id="modalClose">Close</button>
-      </div>
-    </header>
-    <div class="modal-body" id="modalBody"></div>
+<section id="socials" style="display:none">
+  <h2>Join the Community</h2>
+  <div class="card-grid">
+    <div class="card"><a href="https://discord.gg/" target="_blank">Discord</a></div>
+    <div class="card"><a href="https://twitter.com/" target="_blank">Twitter</a></div>
+    <div class="card"><a href="https://youtube.com/" target="_blank">YouTube</a></div>
   </div>
-</div>
+</section>
 
-<footer>
-  © 2025 Noobs Vs Bacons • Made by NVB Development Team
-</footer>
+<section id="updates" class="updates" style="display:none">
+  <h2>Update Log</h2>
+  <div class="card-grid">
+    <div class="card update-card" onclick="openModal('u1')">
+      <h3>Update 1.16.2025</h3>
+      <p>Major rework with new base, badges, and weapons.</p>
+    </div>
+  </div>
+</section>
 
-  </div>  <script>
-    // ----------------- Data (keeps original content but cleaned) -----------------
-    const updatesData = [
-      {
-        key:'update_bacon_citadel',
-        title:'Bacon Citadel',
-        date:'October 20, 2025',
-        excerpt:'New map: Bacon Citadel. Emotes. Ranked. Performance boosts.',
-        body:`<ul><li>New map: <strong>Bacon Citadel</strong> with moving platforms.</li><li>5 new Noob emotes including 'Spaghetti Dance'.</li><li>Ranked mode with seasonal rewards.</li><li>Performance optimizations.</li></ul>`
-      },
-      {
-        key:'update_summer_splash',
-        title:'Summer Splash Event',
-        date:'August 5, 2025',
-        excerpt:'Sandy Shores map. Ice Cream power-up and limited cosmetics.',
-        body:`<ul><li>New map: <strong>Sandy Shores</strong>.</li><li>Ice Cream Power-up grants speed + jump boost.</li><li>Limited sunglasses & beach hats.</li><li>Hidden Easter egg: Find the Crab King.</li></ul>`
-      },
-      {
-        key:'update_v2_overhaul',
-        title:'v2.0 Game Overhaul',
-        date:'May 1, 2025',
-        excerpt:'New abilities. Balance and UI redesign. Anti-cheat.',
-        body:`<ul><li>New Noob ability: <strong>Chaos Dash</strong>.</li><li>New Bacon ability: <strong>Tactical Shield</strong>.</li><li>Team balance adjustments and anti-cheat.</li><li>UI redesign for clarity.</li></ul>`
-      },
-      {
-        key:'update_launch',
-        title:'Game Launch',
-        date:'March 15, 2024',
-        excerpt:'Initial release. 2 teams. 3 maps. First week players surge.',
-        body:`<p>The first live version of <strong>Noobs Vs Bacons</strong> launched.</p><ul><li>2 teams: Noobs vs Bacons</li><li>3 original maps.</li><li>Basic abilities and power-ups</li><li>Over 10,000 players in the first week</li></ul>`
-      }
-    ];
-
-    const creditsData = [
-      {name:'@fadi_fazbar', role:'Owner', url:'https://www.roblox.com/users/1663515500/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-0DC56C16BCCF9ED5D37A3D0C0F184D9A-Png/150/150/AvatarHeadshot/Webp/noFilter'},
-      {name:'@iwantlightfruitplz', role:'Co-Owner', url:'https://www.roblox.com/users/2627552760/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-CC268BBA0DDB4EA7B442C117717663B5-Png/150/150/AvatarHeadshot/Webp/noFilter'},
-      {name:'@gmikolaj394', role:'Game Manager', url:'https://www.roblox.com/users/2347375276/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A921B7B62126196AE72B85157313110F-Png/150/150/AvatarHeadshot/Webp/noFilter'},
-      {name:'@Dariuslucie', role:'Animator & VFX Designer', url:'https://www.roblox.com/users/1398774436/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-C12DA68BF42AF7941F67CFBA8A3F7485-Png/150/150/AvatarHeadshot/Webp/noFilter'},
-      {name:'@Szymciakx20121234', role:'Builder & GUI Designer', url:'https://www.roblox.com/users/1936637571/profile', img:'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-1FCE32A403441767C7800EAB3D9815AA-Png/150/150/AvatarHeadshot/Webp/noFilter'}
-    ];
-
-    const socialsData = [
-      {name:'YouTube', url:'https://youtube.com/@noobsvsbacons?feature=shared', img:'https://i.postimg.cc/J4zKQ2x3/youtube.png', desc:'News and trailers'},
-      {name:'Discord', url:'https://discord.gg/6XvdgKeuhw', img:'https://i.postimg.cc/0QmPj2tP/discord.png', desc:'Join the devs'},
-      {name:'Twitter', url:'https://twitter.com/Fadi_Fazbar', img:'https://i.postimg.cc/4xgq5r8j/x.png', desc:'Short updates'},
-      {name:'Roblox Group', url:'https://roblox.com/groups/13224321/huggy-robux', img:'https://static.wikia.nocookie.net/logopedia/images/e/eb/Roblox-circle-logo.svg/revision/latest/scale-to-width-down/200?cb=20250420213113', desc:'Community hub'}
-    ];
-
-    // ----------------- DOM helpers -----------------
-    const el = selector => document.querySelector(selector);
-    const els = selector => Array.from(document.querySelectorAll(selector));
-
-    // ----------------- Theme logic -----------------
-    const THEME_KEY = 'nvb-theme';
-    const root = document.documentElement;
-    const themeIcon = el('#themeIcon');
-
-    function applyTheme(theme){
-      root.setAttribute('data-theme', theme);
-      if(theme === 'dark') themeIcon.textContent = '🌙'; else themeIcon.textContent = '☀️';
-      localStorage.setItem(THEME_KEY, theme);
+  </main>  <div id="u1" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('u1')">✖</span>
+      <h3>Update 1.16.2025</h3>
+      <ul>
+        <li>Reworked Update Log GUI</li>
+        <li>New Base Rework</li>
+        <li>2 Badges Fixed</li>
+        <li>10 New Musics</li>
+        <li>New Skybox</li>
+        <li>2 New Weapons</li>
+        <li>Bases Rework</li>
+      </ul>
+    </div>
+  </div>  <footer>
+    <p>© 2025 Noobs vs Bacons Studios. All rights reserved.</p>
+  </footer>  <script>
+    const sections = document.querySelectorAll('main section');
+    function showSection(id) {
+      sections.forEach(sec => sec.style.display = sec.id === id ? 'block' : 'none');
     }
 
-    // default dark
-    const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-    applyTheme(savedTheme);
-
-    el('#themeToggle').addEventListener('click', ()=>{
-      const current = root.getAttribute('data-theme') || 'dark';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // ----------------- Tabs / navigation -----------------
-    function setActiveTab(targetId){
-      els('.tab').forEach(t=>t.classList.toggle('active', t.dataset.target === targetId || t.dataset.feature === targetId));
-      els('.page').forEach(p=>p.classList.toggle('active', p.id === targetId));
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
 
-    // top header quick buttons
-    el('#open-about').addEventListener('click', ()=> setActiveTab('aboutTab'));
-    el('#open-game').addEventListener('click', ()=> setActiveTab('gameTab'));
-    el('#open-socials').addEventListener('click', ()=> setActiveTab('socialsTab'));
-
-    els('.tabs .tab').forEach(btn => btn.addEventListener('click', e => {
-      const target = btn.dataset.target;
-      setActiveTab(target);
-    }));
-
-    // game sub-tabs
-    els('[data-feature]').forEach(btn=> btn.addEventListener('click', ()=>{
-      const f = btn.dataset.feature;
-      ['updatesTab','featuresTab','creditsTab'].forEach(id=> document.getElementById(id).style.display = id === f ? 'block' : 'none');
-      els('[data-feature]').forEach(b => b.classList.toggle('active', b === btn));
-    }));
-
-    // jump to updates from about
-    el('#jumpUpdates').addEventListener('click', (e)=>{
-      e.preventDefault();
-      setActiveTab('aboutTab');
-      document.getElementById('updates').scrollIntoView({behavior:'smooth'});
-    });
-
-    // ----------------- Render update cards -----------------
-    function makeCard(u){
-      const div = document.createElement('div');
-      div.className = 'update-card';
-      div.tabIndex = 0;
-      div.innerHTML = `<div class="update-date">${u.date}</div>
-                       <div class="update-body"><h4>${u.title}</h4><p>${u.excerpt}</p></div>`;
-      div.addEventListener('click', ()=> openModal(u.title, `<strong>${u.date}</strong>` + u.body));
-      div.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter') div.click(); });
-      return div;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      toggle.textContent = '☀️';
     }
-
-    const updatesList = el('#updatesList');
-    const gameUpdatesList = el('#gameUpdatesList');
-    updatesData.forEach(u=>{
-      updatesList.appendChild(makeCard(u));
-      gameUpdatesList.appendChild(makeCard(u));
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      toggle.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
-
-    // ----------------- Render credits -----------------
-    const creditsList = el('#creditsList');
-    creditsData.forEach(c=>{
-      const d = document.createElement('div'); d.className='credit';
-      d.innerHTML = `<img src="${c.img}" alt="${c.name}"><div><a href="${c.url}" target="_blank">${c.name}</a><div style='color:var(--muted); font-size:13px'>${c.role}</div></div>`;
-      creditsList.appendChild(d);
-    });
-
-    // ----------------- Render socials -----------------
-    const socialsList = el('#socialsList');
-    const rightSocials = el('#rightSocials');
-    socialsData.forEach(s=>{
-      // top-level socials section
-      const card = document.createElement('a');
-      card.className = 'social-card';
-      card.href = s.url; card.target = '_blank';
-      card.innerHTML = `<img src="${s.img}" alt="${s.name}"><div><h4>${s.name}</h4><p>${s.desc}</p></div>`;
-      socialsList.appendChild(card);
-
-      // right column already has markup; add click behavior
-      // also ensure right column cards open links
-    });
-
-    // make right column social cards clickable
-    els('#rightSocials .social-card').forEach(sc=>{
-      sc.style.cursor='pointer';
-      sc.addEventListener('click', ()=>{
-        const url = sc.dataset.url; if(!url) return; window.open(url, '_blank');
-      });
-    });
-
-    // ----------------- Modal -----------------
-    const modalRoot = el('#modalRoot');
-    const modalTitle = el('#modalTitle');
-    const modalBody = el('#modalBody');
-    el('#modalClose').addEventListener('click', closeModal);
-    modalRoot.addEventListener('click', (e)=>{ if(e.target === modalRoot) closeModal(); });
-
-    function openModal(title, bodyHTML){
-      modalTitle.innerHTML = title;
-      modalBody.innerHTML = bodyHTML;
-      modalRoot.classList.add('active');
-      modalRoot.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(){
-      modalRoot.classList.remove('active');
-      modalRoot.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-    }
-
-    // keyboard
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
-
-    // ----------------- Accessibility: focus outline -----------------
-    document.addEventListener('keyup', (e)=>{ if(e.key === 'Tab') document.documentElement.classList.add('user-is-tabbing'); });
-
-    // ----------------- small polish: ensure default page state -----------------
-    // default to About tab
-    setActiveTab('aboutTab');
-
   </script></body>
 </html>
