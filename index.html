@@ -1,103 +1,71 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Noobs vs Bacons Studios</title>
   <style>
-    :root {
-      --bg-dark: #0a0a0b;
-      --bg-light: #f8f8f8;
-      --text-dark: #f2f2f2;
-      --text-light: #0a0a0a;
-      --accent1: #ff4d6d;
-      --accent2: #5865f2;
-      --card-dark: #151516;
-      --card-light: #ffffff;
-      --transition: 0.3s ease;
-    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-      transition: background var(--transition), color var(--transition);
-      overflow-x: hidden;
-    }
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
-    }header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  text-align: center;
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    }body {
+  background: linear-gradient(135deg, #141414, #1c1c1f);
   color: white;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  overflow-x: hidden;
 }
+
+header {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: linear-gradient(135deg, #00b3ff, #ff2e63);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
 header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.6rem;
+  margin-bottom: 1.3rem;
+  letter-spacing: 1px;
 }
 
 nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 1rem;
-}
-nav button {
-  background: rgba(255,255,255,0.15);
-  border: 2px solid rgba(255,255,255,0.2);
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
-}
-nav button:hover {
-  background: rgba(255,255,255,0.3);
-  transform: translateY(-2px);
 }
 
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
+nav button {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  background: rgba(0,0,0,0.4);
-  padding: 0.4rem 0.6rem;
-  border-radius: 50%;
-  transition: transform var(--transition);
+  transition: background 0.25s ease, transform 0.25s ease;
 }
-.theme-toggle:hover {
-  transform: rotate(25deg);
+
+nav button:hover,
+nav button.active {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
 }
 
 main {
-  padding: 3rem 1.5rem;
-  display: flex;
-  justify-content: center;
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 1rem;
 }
 
 section {
   display: none;
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
 }
+
 section.visible {
   display: block;
-  animation: fadeIn 0.6s ease;
 }
 
 @keyframes fadeIn {
@@ -111,65 +79,83 @@ section.visible {
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
 .card {
-  background: var(--card-dark);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
-  transition: transform var(--transition), background var(--transition);
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s, background 0.3s;
+  backdrop-filter: blur(6px);
 }
-body.light .card {
-  background: var(--card-light);
-}
+
 .card:hover {
-  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-6px);
+}
+
+a {
+  color: #69c9ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #ff9fcf;
 }
 
 footer {
   text-align: center;
-  padding: 1rem;
-  opacity: 0.8;
+  padding: 1.8rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
   }
+
   nav button {
     font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  main {
+    padding: 0.5rem;
   }
 }
 
   </style>
 </head>
 <body>
-  <div class="theme-toggle" id="themeToggle">🌙</div>
   <header>
     <h1>Noobs vs Bacons Studios</h1>
     <nav>
-      <button onclick="showSection('about')">About</button>
-      <button onclick="showSection('game')">Game</button>
-      <button onclick="showSection('socials')">Socials</button>
-      <button onclick="showSection('credits')">Credits</button>
-      <button onclick="showSection('updates')">Updates</button>
+      <button class="active" onclick="showSection('about', this)">About</button>
+      <button onclick="showSection('game', this)">Game</button>
+      <button onclick="showSection('socials', this)">Socials</button>
+      <button onclick="showSection('credits', this)">Credits</button>
+      <button onclick="showSection('updates', this)">Updates</button>
     </nav>
   </header>  <main>
     <section id="about" class="visible">
-      <h2>Welcome to Noobs vs Bacons</h2>
-      <p>The war continues between the legendary Noobs and the unstoppable Bacons. Choose your side and dominate.</p>
+      <h2>About Us</h2>
+      <p>Welcome to <strong>Noobs vs Bacons Studios</strong> — a creative powerhouse building chaotic and fun Roblox experiences. Join the ultimate battle between Noobs and Bacons and prove your might!</p>
     </section><section id="game">
   <h2>Game Overview</h2>
   <div class="card-grid">
     <div class="card">
-      <h3>Battlefields</h3>
-      <p>Fight in dynamic maps and control zones to lead your faction to victory.</p>
-    </div>
-    <div class="card">
-      <h3>Upgrades</h3>
-      <p>Unlock new weapons and skills to boost your power and strategy.</p>
+      <h3>Dynamic Battles</h3>
+      <p>Experience intense showdowns where strategy and reflexes determine victory.</p>
     </div>
     <div class="card">
       <h3>Customization</h3>
-      <p>Personalize your appearance, weapons, and gear for a unique playstyle.</p>
+      <p>Style your avatar, pick your weapon, and dominate your opponents in your own way.</p>
+    </div>
+    <div class="card">
+      <h3>Map Variety</h3>
+      <p>Fight across reworked environments filled with hidden tactics and explosive power-ups.</p>
     </div>
   </div>
 </section>
@@ -185,7 +171,7 @@ footer {
 
 <section id="credits">
   <h2>Credits</h2>
-  <p>Created by NVB Studios. All contributors listed in-game.</p>
+  <p>Created by NVB Studios. Every contributor helped build this massive experience of chaos and fun.</p>
 </section>
 
 <section id="updates">
@@ -195,12 +181,11 @@ footer {
       <h3>1.16.2025</h3>
       <ul style="text-align:left;">
         <li>Reworked Update Log GUI</li>
-        <li>New Base Rework</li>
+        <li>Base System Overhaul</li>
         <li>2 Badges Fixed</li>
-        <li>10 New Musics</li>
-        <li>New Skybox</li>
-        <li>2 New Weapons</li>
-        <li>Bases Rework</li>
+        <li>10 New Music Tracks</li>
+        <li>New Skybox + 2 Weapons</li>
+        <li>Full Base Rework</li>
       </ul>
     </div>
   </div>
@@ -210,22 +195,14 @@ footer {
     <p>© 2025 NVB Studios. All Rights Reserved.</p>
   </footer>  <script>
     const sections = document.querySelectorAll('main section');
-    function showSection(id) {
+    const navButtons = document.querySelectorAll('nav button');
+
+    function showSection(id, btn) {
       sections.forEach(sec => sec.classList.remove('visible'));
       document.getElementById(id).classList.add('visible');
-    }
 
-    const toggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light');
-      toggle.textContent = '☀️';
+      navButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      const isLight = document.body.classList.contains('light');
-      toggle.textContent = isLight ? '☀️' : '🌙';
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
   </script></body>
 </html>
