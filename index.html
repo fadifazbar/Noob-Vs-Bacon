@@ -1,20 +1,901 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <link href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/690f959ddda80dd0e8d5f3f0/553e615f3_logo.png" rel="icon" type="image/svg+xml"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Noobs Vs Bacons
-  </title>
-  <script crossorigin="" src="/assets/index-BvpQcLzn.js" type="module">
-  </script>
-  <link crossorigin="" href="/assets/index-BAg5CNcd.css" rel="stylesheet"/>
- </head>
- <body>
-  <div id="root">
-  </div>
-  <script src="/node_modules/@base44/vite-plugin/dist/injections/unhandled-errors-handlers.js" type="module">
-  </script>
- </body>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- ✅ Discord & Social Embeds -->
+    <meta property="og:title" content="Noobs Vs Bacons Official Site" />
+    <meta property="og:description" content="Welcome to the official site for noobs vs bacons, the Roblox game that is fun and unique." />
+    <meta property="og:image" content="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" />
+    <meta property="og:url" content="https://noobs-vs-bacons.base44.app" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#fff68f" />
+
+    <!-- 🐦 Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Noobs Vs Bacons Official Site" />
+    <meta name="twitter:description" content="Welcome to the official site for noobs vs bacons, the Roblox game that is fun and unique." />
+    <meta name="twitter:image" content="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" />
+
+    <!-- SEO -->
+    <meta name="description" content="Official site for Noobs Vs Bacons — a hilarious, fast-paced Roblox team battle game. Join the chaos or bring the strategy!" />
+    <meta name="keywords" content="Roblox, Noobs Vs Bacons, game, multiplayer, team battle" />
+    <title>Noobs Vs Bacons • Official Site</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <style>
+        /* ===== THEME VARIABLES ===== */
+        :root {
+            --noobs: #fffb00;
+            --vs: #ff0000;
+            --bacons: #54d1ff;
+            
+            /* Dark Theme */
+            --dark-bg: #0d0d1a;
+            --dark-card: #151525;
+            --dark-border: #2a2a40;
+            --dark-text: #f8f9fa;
+            --dark-muted: #a0a8b8;
+            
+            /* Light Theme */
+            --light-bg: #f8f9fa;
+            --light-card: #ffffff;
+            --light-border: #e0e0e0;
+            --light-text: #1a1a2e;
+            --light-muted: #6c757d;
+            
+            /* Shared */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ===== THEME STYLES ===== */
+        [data-theme="dark"] {
+            --bg: var(--dark-bg);
+            --card-bg: var(--dark-card);
+            --border: var(--dark-border);
+            --text: var(--dark-text);
+            --text-muted: var(--dark-muted);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--light-bg);
+            --card-bg: var(--light-card);
+            --border: var(--light-border);
+            --text: var(--light-text);
+            --text-muted: var(--light-muted);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== FADE-IN ANIMATION (Simple) ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 70px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/Bvd7L7G4/Picsart-25-10-11-19-30-55-153.jpg') center/cover no-repeat;
+            opacity: 0.06;
+            z-index: -1;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .game-title {
+            font-size: 5.4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .noobs { 
+            color: var(--noobs);
+            text-shadow: 0 0 12px rgba(255, 251, 0, 0.5);
+        }
+        .vs { 
+            color: var(--vs);
+            text-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+        }
+        .bacons { 
+            color: var(--bacons);
+            text-shadow: 0 0 12px rgba(84, 209, 255, 0.5);
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(84, 209, 255, 0.4);
+        }
+
+        .theme-icon {
+            font-size: 1.4rem;
+            color: var(--text);
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--bacons);
+            padding: 14px 32px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--noobs), var(--bacons));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover::before {
+            opacity: 0.1;
+        }
+
+        .nav-btn.active, .nav-btn:active {
+            background: var(--bacons);
+            color: #000;
+            border-color: var(--bacons);
+            box-shadow: 0 0 0 3px rgba(84, 209, 255, 0.3);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 2.4rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--noobs), var(--bacons));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .section p, .section ul {
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+
+        a {
+            color: var(--noobs);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--text);
+        }
+
+        /* Sub-Nav */
+        .sub-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0 35px;
+            flex-wrap: wrap;
+        }
+
+        .sub-btn {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--bacons);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sub-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .sub-btn.active {
+            background: var(--bacons);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(84, 209, 255, 0.4);
+        }
+
+        /* News */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 30px;
+        }
+
+        .news-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-img img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 25px;
+            border-top: 3px solid var(--noobs);
+        }
+
+        .news-date {
+            display: block;
+            color: var(--bacons);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .news-title {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--noobs);
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--noobs);
+            box-shadow: 0 10px 25px rgba(255, 251, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--noobs), var(--bacons));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .feature-card:hover .feature-img img {
+            transform: scale(1.03);
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--noobs);
+        }
+
+        /* Socials */
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .social-card {
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(84, 209, 255, 0.1), rgba(255, 251, 0, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bacons);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-card:hover::before {
+            opacity: 1;
+        }
+
+        .social-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .social-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .social-card:hover .social-img img {
+            transform: scale(1.05);
+        }
+
+        .social-icon {
+            font-size: 2.8rem;
+            margin-bottom: 18px;
+            transition: transform 0.3s;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .social-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--noobs);
+        }
+
+        /* Credits */
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            margin-top: 30px;
+        }
+
+        .credit-item {
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .credit-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .credit-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .credit-item:hover .credit-img img {
+            transform: scale(1.05);
+        }
+
+        .credit-username {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--noobs);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .credit-username:hover {
+            color: var(--vs);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .credit-role {
+            font-size: 1.1rem;
+            color: var(--bacons);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .game-title { font-size: 4.2rem; }
+            .section { padding: 35px 25px; }
+            nav { gap: 15px; }
+            .nav-btn { padding: 12px 24px; font-size: 1.05rem; }
+        }
+
+        @media (max-width: 480px) {
+            .game-title { font-size: 3rem; }
+            header { padding: 50px 0 30px; }
+            .section { padding: 30px 20px; }
+            nav { gap: 12px; }
+            .nav-btn { padding: 10px 20px; font-size: 1rem; }
+            .news-grid, .features-grid, .socials-grid, .credits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon theme-icon" id="themeIcon"></i>
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="header-bg"></div>
+            <div class="logo-container">
+                <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="Noobs Vs Bacons Logo" class="logo">
+            </div>
+            <h1 class="game-title">
+                <span class="noobs">NOOBS</span>
+                <span class="vs"> VS </span>
+                <span class="bacons">BACONS</span>
+            </h1>
+        </header>
+
+        <nav>
+            <button class="nav-btn" onclick="showSection('about')">About Us</button>
+            <button class="nav-btn" onclick="showSection('game')">Game</button>
+            <button class="nav-btn" onclick="showSection('socials')">Socials</button>
+        </nav>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Noobs Vs Bacons</h2>
+            <p><strong>Noobs Vs Bacons</strong> is a hilarious, fast-paced team battle game on Roblox where chaos meets strategy!</p>
+            <p><i class="fas fa-calendar-alt" style="color:var(--bacons); margin-right:8px;"></i> <strong>Released:</strong> March 15, 2024</p>
+            <p><i class="fas fa-user-crown" style="color:var(--noobs); margin-right:8px;"></i> <strong>Creator:</strong> <a href="https://www.roblox.com/users/123456789/profile" target="_blank">@GameDev_Master</a></p>
+            <p>We built this game to celebrate the joy of silly, high-energy teamwork — where being a "Noob" is a badge of honor, and "Bacon" means you’ve got the skills to back it up.</p>
+            <div style="text-align:center; margin-top:30px;">
+                <a href="https://www.roblox.com/games/your-game-id" target="_blank" 
+                   style="background:linear-gradient(90deg, var(--noobs), #ffd700); color:#000; padding:14px 35px; border-radius:50px; font-weight:bold; text-decoration:none; display:inline-block; box-shadow:0 5px 15px rgba(255,251,0,0.3); transition:all 0.3s;">
+                    <i class="fas fa-play-circle" style="margin-right:10px;"></i> Play Now on Roblox
+                </a>
+            </div>
+        </section>
+
+        <!-- Game Section -->
+        <section id="game" class="section">
+            <h2>Game Details</h2>
+            <div class="sub-nav">
+                <button class="sub-btn" onclick="showGameTab('news')">📰 News</button>
+                <button class="sub-btn" onclick="showGameTab('features')">✨ Features</button>
+                <button class="sub-btn" onclick="showGameTab('credits')">👥 Credits</button>
+            </div>
+
+
+            <!-- NEWS TAB -->
+            <div id="news" class="game-tab" style="display:block;">
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" alt="Fadi, new UI designer">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar"></i> May 10, 2025</span>
+                            <h3 class="news-title">New Developer Joined!</h3>
+                            <p>Our development team has welcomed a new member! Meet <strong>Fadi</strong>, our new UI Designer, bringing sleek interfaces and smoother menus to Noobs Vs Bacons.</p>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="https://i.postimg.cc/Bvd7L7G4/Picsart-25-10-11-19-30-55-153.jpg" alt="Summer Splash Event teaser">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar"></i> April 28, 2025</span>
+                            <h3 class="news-title">Summer Splash Event Coming!</h3>
+                            <p>Get ready for waves of fun! A beach-themed event drops June 1st with new maps, power-ups, and limited cosmetics.</p>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="Fan art collection">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="far fa-calendar"></i> April 15, 2025</span>
+                            <h3 class="news-title">Community Art Showcase</h3>
+                            <p>We’re blown away by your creativity! Check out the top 10 fan-submitted artworks in our new gallery (in-game lobby).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Tab -->
+            <div id="features" class="game-tab" style="display:none;">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>5v5 Team Battles</h3>
+                        <p>Work together to outsmart and outplay the enemy team in fast-paced matches.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Team Abilities</h3>
+                        <p>Noobs: Chaos Dash | Bacons: Shield Wall — unique powers for each side!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <h3>Dynamic Maps</h3>
+                        <p>6+ arenas with interactive elements, traps, and secrets to discover.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credits Tab -->
+            <div id="credits" class="game-tab" style="display:none;">
+                <h3 style="text-align:center; margin-bottom:30px; color:var(--noobs);">Special Thanks to Our Team</h3>
+                <div class="credits-grid">
+                    <div class="credit-item">
+                        <div class="credit-img">
+                            <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="GameDev_Master">
+                        </div>
+                        <a href="https://www.roblox.com/users/123456789/profile" target="_blank" class="credit-username">@GameDev_Master</a>
+                        <div class="credit-role">Lead Developer</div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-img">
+                            <img src="https://i.postimg.cc/Bvd7L7G4/Picsart-25-10-11-19-30-55-153.jpg" alt="ArtMaster99">
+                        </div>
+                        <a href="https://www.roblox.com/users/222222222/profile" target="_blank" class="credit-username">@ArtMaster99</a>
+                        <div class="credit-role">Lead Artist</div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-img">
+                            <img src="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" alt="TestSolver">
+                        </div>
+                        <a href="https://www.roblox.com/users/333333333/profile" target="_blank" class="credit-username">@TestSolver</a>
+                        <div class="credit-role">QA Lead</div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-img">
+                            <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="Fadi_UI">
+                        </div>
+                        <a href="https://www.roblox.com/users/444444444/profile" target="_blank" class="credit-username">@Fadi_UI</a>
+                        <div class="credit-role">UI Designer</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Socials Section -->
+        <section id="socials" class="section">
+            <h2>Join Our Community</h2>
+            <p>Follow us and connect with players worldwide!</p>
+            <div class="socials-grid">
+                <a href="https://youtube.com/@YourChannel" target="_blank" class="social-card youtube">
+                    <div class="social-img">
+                        <img src="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" alt="YouTube Channel">
+                    </div>
+                    <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    <h3>YouTube</h3>
+                    <p>Gameplay, updates & behind-the-scenes</p>
+                </a>
+                <a href="https://discord.gg/your-invite" target="_blank" class="social-card discord">
+                    <div class="social-img">
+                        <img src="https://i.postimg.cc/Bvd7L7G4/Picsart-25-10-11-19-30-55-153.jpg" alt="Discord Server">
+                    </div>
+                    <div class="social-icon"><i class="fab fa-discord"></i></div>
+                    <h3>Discord</h3>
+                    <p>Chat, events & support</p>
+                </a>
+                <a href="https://twitter.com/YourHandle" target="_blank" class="social-card twitter">
+                    <div class="social-img">
+                        <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="Twitter/X">
+                    </div>
+                    <div class="social-icon"><i class="fab fa-x-twitter"></i></div>
+                    <h3>Twitter</h3>
+                    <p>Quick updates & memes</p>
+                </a>
+                <a href="https://www.roblox.com/groups/123456789" target="_blank" class="social-card roblox">
+                    <div class="social-img">
+                        <img src="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" alt="Roblox Group">
+                    </div>
+                    <div class="social-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Roblox Group</h3>
+                    <p>Exclusive rewards & news</p>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Noobs Vs Bacons • Official Roblox Experience</p>
+            <p style="margin-top:8px; font-size:0.95rem;">
+                Roblox is a trademark of Roblox Corporation. This site is fan-made and not affiliated with Roblox Corporation.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // ===== THEME TOGGLE (SANDBOX-SAFE) =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Initialize theme safely
+        let currentTheme = 'dark';
+        
+        try {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                currentTheme = saved;
+            } else {
+                currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+        } catch (e) {
+            currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            currentTheme = newTheme;
+            
+            html.setAttribute('data-theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            try {
+                localStorage.setItem('theme', newTheme);
+            } catch (e) {}
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' 
+                ? 'fas fa-moon theme-icon' 
+                : 'fas fa-sun theme-icon';
+        }
+
+        // ===== NAVIGATION (Simplified & Robust) =====
+        function showSection(id) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show target section
+            const section = document.getElementById(id);
+            if (section) {
+                section.classList.add('active');
+            }
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate matching button
+            const targetBtn = Array.from(document.querySelectorAll('.nav-btn'))
+                .find(btn => btn.textContent.trim() === 
+                    ({'about':'About Us','game':'Game','socials':'Socials'}[id] || ''));
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+            
+            // Reset game sub-tabs if needed
+            if (id === 'game') {
+                showGameTab('news');
+            }
+        }
+
+        function showGameTab(id) {
+            // Hide all game tabs
+            ['news', 'features', 'credits'].forEach(tabId => {
+                const tab = document.getElementById(tabId);
+                if (tab) tab.style.display = 'none';
+            });
+            
+            // Show target tab
+            const tab = document.getElementById(id);
+            if (tab) tab.style.display = 'block';
+            
+            // Update sub-buttons
+            document.querySelectorAll('.sub-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const targetBtn = Array.from(document.querySelectorAll('.sub-btn'))
+                .find(btn => btn.textContent.trim().toLowerCase() === id);
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('about');
+        });
+    </script>
+</body>
 </html>
