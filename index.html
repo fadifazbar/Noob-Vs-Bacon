@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <!-- ✅ Discord & Social Embeds -->
     <meta property="og:title" content="Noobs Vs Bacons Official Site" />
     <meta property="og:description" content="Welcome to the official site for noobs vs bacons, the Roblox game that is fun and unique." />
     <meta property="og:image" content="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" />
@@ -12,21 +11,17 @@
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#fff68f" />
 
-    <!-- 🐦 Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Noobs Vs Bacons Official Site" />
     <meta name="twitter:description" content="Welcome to the official site for noobs vs bacons, the Roblox game that is fun and unique." />
     <meta name="twitter:image" content="https://i.postimg.cc/sxnnMQ68/no-Filter.webp" />
 
-    <!-- SEO -->
     <meta name="description" content="Official site for Noobs Vs Bacons — a hilarious, fast-paced Roblox team battle game. Join the chaos or bring the strategy!" />
     <meta name="keywords" content="Roblox, Noobs Vs Bacons, game, multiplayer, team battle" />
     <title>Noobs Vs Bacons • Official Site</title>
     
-    <!-- Favicon -->
     <link rel="icon" href="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" />
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
     <style>
@@ -109,7 +104,20 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* 💡 NEW: Canvas Styling */
+        #headerCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Below header content but above the background color */
+            opacity: 0.8;
+            transition: opacity 0.4s;
+        }
 
+        /* 💡 Original background now sits at z-index -3 */
         .header-bg {
             position: absolute;
             top: 0;
@@ -118,7 +126,7 @@
             height: 100%;
             background: url('https://i.postimg.cc/Bvd7L7G4/Picsart-25-10-11-19-30-55-153.jpg') center/cover no-repeat;
             opacity: 0.06;
-            z-index: -1;
+            z-index: -3; /* Lower z-index */
         }
 
         .logo-container {
@@ -143,23 +151,23 @@
             letter-spacing: -2px;
             margin: 0;
             line-height: 1;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for better contrast over canvas */
         }
 
         .noobs { 
             color: var(--noobs);
-            text-shadow: 0 0 12px rgba(255, 251, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 251, 0, 0.7); /* Stronger glow */
         }
         .vs { 
             color: var(--vs);
-            text-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Stronger glow */
         }
         .bacons { 
             color: var(--bacons);
-            text-shadow: 0 0 12px rgba(84, 209, 255, 0.5);
+            text-shadow: 0 0 15px rgba(84, 209, 255, 0.7); /* Stronger glow */
         }
 
-        /* ===== THEME TOGGLE ===== */
+        /* ===== THEME TOGGLE (EXISTING STYLES) ===== */
         .theme-toggle {
             position: absolute;
             top: 30px;
@@ -187,6 +195,8 @@
             color: var(--text);
         }
 
+        /* [Existing Navigation and Section Styles... (omitted for brevity, they remain the same)] */
+
         /* ===== NAVIGATION ===== */
         nav {
             display: flex;
@@ -208,6 +218,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            z-index: 1; /* Ensure button is above canvas */
         }
 
         .nav-btn::before {
@@ -598,14 +609,13 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
         <i class="fas fa-moon theme-icon" id="themeIcon"></i>
     </button>
 
     <div class="container">
         <header>
-            <div class="header-bg"></div>
+            <canvas id="headerCanvas"></canvas> <div class="header-bg"></div>
             <div class="logo-container">
                 <img src="https://i.postimg.cc/XYMnHQNV/Noobs-Vs-Bacons.png" alt="Noobs Vs Bacons Logo" class="logo">
             </div>
@@ -622,7 +632,6 @@
             <button class="nav-btn" onclick="showSection('socials')">Socials</button>
         </nav>
 
-        <!-- About Section -->
         <section id="about" class="section">
             <h2>About Noobs Vs Bacons</h2>
             <p><strong>Noobs Vs Bacons</strong> is a hilarious, fast-paced team battle game on Roblox where chaos meets strategy!</p>
@@ -631,13 +640,12 @@
             <p>We built this game to celebrate the joy of silly, high-energy teamwork — where being a "Noob" is a badge of honor, and "Bacon" means you’ve got the skills to back it up.</p>
             <div style="text-align:center; margin-top:30px;">
                 <a href="https://www.roblox.com/games/your-game-id" target="_blank" 
-                   style="background:linear-gradient(90deg, var(--noobs), #ffd700); color:#000; padding:14px 35px; border-radius:50px; font-weight:bold; text-decoration:none; display:inline-block; box-shadow:0 5px 15px rgba(255,251,0,0.3); transition:all 0.3s;">
+                    style="background:linear-gradient(90deg, var(--noobs), #ffd700); color:#000; padding:14px 35px; border-radius:50px; font-weight:bold; text-decoration:none; display:inline-block; box-shadow:0 5px 15px rgba(255,251,0,0.3); transition:all 0.3s;">
                     <i class="fas fa-play-circle" style="margin-right:10px;"></i> Play Now on Roblox
                 </a>
             </div>
         </section>
 
-        <!-- Game Section -->
         <section id="game" class="section">
             <h2>Game Details</h2>
             <div class="sub-nav">
@@ -647,7 +655,6 @@
             </div>
 
 
-            <!-- NEWS TAB -->
             <div id="news" class="game-tab" style="display:block;">
                 <div class="news-grid">
                     <div class="news-card">
@@ -685,7 +692,6 @@
                 </div>
             </div>
 
-            <!-- Features Tab -->
             <div id="features" class="game-tab" style="display:none;">
                 <div class="features-grid">
                     <div class="feature-card">
@@ -712,7 +718,6 @@
                 </div>
             </div>
 
-            <!-- Credits Tab -->
             <div id="credits" class="game-tab" style="display:none;">
                 <h3 style="text-align:center; margin-bottom:30px; color:var(--noobs);">Special Thanks to Our Team</h3>
                 <div class="credits-grid">
@@ -748,7 +753,6 @@
             </div>
         </section>
 
-        <!-- Socials Section -->
         <section id="socials" class="section">
             <h2>Join Our Community</h2>
             <p>Follow us and connect with players worldwide!</p>
@@ -797,7 +801,134 @@
     </div>
 
     <script>
-        // ===== THEME TOGGLE (SANDBOX-SAFE) =====
+        // ===== CANVAS ANIMATION (NEW) =====
+        const canvas = document.getElementById('headerCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        // Resize canvas to match header size
+        function resizeCanvas() {
+            const header = document.querySelector('header');
+            width = canvas.width = header.offsetWidth;
+            height = canvas.height = header.offsetHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const particleCount = 40;
+        const noobColor = getComputedStyle(document.documentElement).getPropertyValue('--noobs').trim();
+        const baconColor = getComputedStyle(document.documentElement).getPropertyValue('--bacons').trim();
+
+        // Particle Class
+        class Particle {
+            constructor(x, y, radius, color, velocity) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.velocity = velocity;
+                this.alpha = 1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.shadowColor = this.color;
+                ctx.shadowBlur = 10;
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+
+                // Simple collision detection (bounce off edges)
+                if (this.x + this.radius > width || this.x - this.radius < 0) {
+                    this.velocity.x = -this.velocity.x;
+                }
+                if (this.y + this.radius > height || this.y - this.radius < 0) {
+                    this.velocity.y = -this.velocity.y;
+                }
+
+                this.draw();
+            }
+        }
+
+        // Initialization
+        function initParticles() {
+            particles.length = 0; // Clear existing particles
+            for (let i = 0; i < particleCount; i++) {
+                const radius = Math.random() * 2 + 1;
+                const x = Math.random() * (width - radius * 2) + radius;
+                const y = Math.random() * (height - radius * 2) + radius;
+                const color = i % 2 === 0 ? noobColor : baconColor;
+                const velocity = {
+                    x: (Math.random() - 0.5) * 0.5,
+                    y: (Math.random() - 0.5) * 0.5
+                };
+                particles.push(new Particle(x, y, radius, color, velocity));
+            }
+        }
+
+        // Animation Loop
+        let animationId;
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw connecting lines between close particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const p1 = particles[i];
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                    
+                    if (dist < 100) { // Connect if distance is less than 100px
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        // Fading line effect
+                        const alpha = 1 - (dist / 100); 
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.1})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+            });
+        }
+
+        // Initialize and start animation
+        initParticles();
+        animate();
+        
+        // Handle theme change for colors (dynamic update)
+        new MutationObserver((mutationsList) => {
+            for(const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    // Re-initialize particles to use the new colors
+                    const newNoobColor = getComputedStyle(document.documentElement).getPropertyValue('--noobs').trim();
+                    const newBaconColor = getComputedStyle(document.documentElement).getPropertyValue('--bacons').trim();
+                    
+                    particles.forEach((p, index) => {
+                         p.color = index % 2 === 0 ? newNoobColor : newBaconColor;
+                    });
+                }
+            }
+        }).observe(html, { attributes: true });
+
+
+        // ===== THEME TOGGLE (EXISTING JS - MODIFIED SLIGHTLY FOR CANVAS) =====
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const html = document.documentElement;
@@ -837,7 +968,7 @@
                 : 'fas fa-sun theme-icon';
         }
 
-        // ===== NAVIGATION (Simplified & Robust) =====
+        // ===== NAVIGATION (EXISTING JS) =====
         function showSection(id) {
             // Hide all sections
             document.querySelectorAll('.section').forEach(el => {
@@ -886,7 +1017,7 @@
             });
             
             const targetBtn = Array.from(document.querySelectorAll('.sub-btn'))
-                .find(btn => btn.textContent.trim().toLowerCase() === id);
+                .find(btn => btn.textContent.trim().toLowerCase().includes(id)); // Using .includes for robust matching
             if (targetBtn) {
                 targetBtn.classList.add('active');
             }
